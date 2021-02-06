@@ -22,10 +22,6 @@ public class GroupCreationTests {
     driver = new ChromeDriver();
     baseUrl = "https://www.google.com/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-  }
-
-  @Test
-  public void testUntitledTestCase() throws Exception {
     driver.get("http://localhost/addressbook/group.php");
     driver.findElement(By.name("user")).click();
     driver.findElement(By.name("user")).clear();
@@ -33,6 +29,11 @@ public class GroupCreationTests {
     driver.findElement(By.name("pass")).clear();
     driver.findElement(By.name("pass")).sendKeys("secret");
     driver.findElement(By.id("LoginForm")).submit();
+
+  }
+
+  @Test
+  public void testGroupCreation() throws Exception {
     driver.findElement(By.linkText("groups")).click();
     driver.findElement(By.name("new")).click();
     driver.findElement(By.name("group_name")).click();
