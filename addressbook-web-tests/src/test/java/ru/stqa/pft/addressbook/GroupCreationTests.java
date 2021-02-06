@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.*;
 import static org.testng.Assert.*;
 import org.openqa.selenium.*;
@@ -113,5 +114,48 @@ public class GroupCreationTests {
     } finally {
       acceptNextAlert = true;
     }
+  }
+
+
+  @Test
+  public void testNewContact() throws Exception {
+    login("admin", "secret");
+    addNewContact("add new");
+    fillNewContact(new ContactData("Nikolai", "Kolesnikov", "Koleso", "QA", "AH", "8-985-759-2332", "nikolas797@mail.ru", "7", "December", "1997"));
+  }
+
+  private void fillNewContact(ContactData contactData) {
+    driver.findElement(By.name("firstname")).click();
+    driver.findElement(By.name("firstname")).clear();
+    driver.findElement(By.name("firstname")).sendKeys(contactData.getName());
+    driver.findElement(By.name("lastname")).clear();
+    driver.findElement(By.name("lastname")).sendKeys(contactData.getLastname());
+    driver.findElement(By.name("nickname")).clear();
+    driver.findElement(By.name("nickname")).sendKeys(contactData.getNik());
+    driver.findElement(By.name("title")).click();
+    driver.findElement(By.name("title")).clear();
+    driver.findElement(By.name("title")).sendKeys(contactData.getTitle());
+    driver.findElement(By.name("company")).click();
+    driver.findElement(By.name("company")).clear();
+    driver.findElement(By.name("company")).sendKeys(contactData.getCompany());
+    driver.findElement(By.name("mobile")).click();
+    driver.findElement(By.name("mobile")).clear();
+    driver.findElement(By.name("mobile")).sendKeys(contactData.getMobile());
+    driver.findElement(By.name("email")).click();
+    driver.findElement(By.name("email")).clear();
+    driver.findElement(By.name("email")).sendKeys(contactData.getMail());
+    driver.findElement(By.name("bday")).click();
+    new Select(driver.findElement(By.name("bday"))).selectByVisibleText(contactData.getBday());
+    driver.findElement(By.name("bmonth")).click();
+    new Select(driver.findElement(By.name("bmonth"))).selectByVisibleText(contactData.getBmonth());
+    driver.findElement(By.name("byear")).click();
+    driver.findElement(By.name("byear")).clear();
+    driver.findElement(By.name("byear")).sendKeys(contactData.getByear());
+    driver.findElement(By.name("new_group")).click();
+    driver.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+  }
+
+  private void addNewContact(String s) {
+    driver.findElement(By.linkText(s)).click();
   }
 }
