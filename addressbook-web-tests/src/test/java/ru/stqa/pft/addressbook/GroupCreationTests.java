@@ -1,14 +1,11 @@
 package ru.stqa.pft.addressbook;
 
-import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 import static org.testng.Assert.*;
 import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
 
 public class GroupCreationTests {
   private WebDriver driver;
@@ -23,29 +20,57 @@ public class GroupCreationTests {
     baseUrl = "https://www.google.com/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     driver.get("http://localhost/addressbook/group.php");
-    driver.findElement(By.name("user")).click();
-    driver.findElement(By.name("user")).clear();
-    driver.findElement(By.name("user")).sendKeys("admin");
-    driver.findElement(By.name("pass")).clear();
-    driver.findElement(By.name("pass")).sendKeys("secret");
-    driver.findElement(By.id("LoginForm")).submit();
+    login("admin", "secret");
 
+  }
+
+  private void login(String username, String password) {
+    submitGroupCreation("user");
+    driver.findElement(By.name("user")).clear();
+    driver.findElement(By.name("user")).sendKeys(username);
+    driver.findElement(By.name("pass")).clear();
+    driver.findElement(By.name("pass")).sendKeys(password);
+    driver.findElement(By.id("LoginForm")).submit();
   }
 
   @Test
   public void testGroupCreation() throws Exception {
-    driver.findElement(By.linkText("groups")).click();
-    driver.findElement(By.name("new")).click();
-    driver.findElement(By.name("group_name")).click();
+    gotoGroupPage("groups");
+    initGroupCreation("new");
+    initGroupCreation("group_name");
+    fillGroupForm(new GroupData("test2", "test3", "test4"));
+    submitGroupCreation("submit");
+    returnToGroupPage("group page");
+    exitLogout("Logout");
+  }
+
+  private void exitLogout(String logout) {
+    driver.findElement(By.linkText(logout)).click();
+  }
+
+  private void returnToGroupPage(String s) {
+    exitLogout(s);
+  }
+
+  private void submitGroupCreation(String submit) {
+    initGroupCreation(submit);
+  }
+
+  private void fillGroupForm(GroupData groupData) {
     driver.findElement(By.name("group_name")).clear();
-    driver.findElement(By.name("group_name")).sendKeys("test2");
+    driver.findElement(By.name("group_name")).sendKeys(groupData.getName());
     driver.findElement(By.name("group_header")).clear();
-    driver.findElement(By.name("group_header")).sendKeys("test3");
+    driver.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
     driver.findElement(By.name("group_footer")).clear();
-    driver.findElement(By.name("group_footer")).sendKeys("test4");
-    driver.findElement(By.name("submit")).click();
-    driver.findElement(By.linkText("group page")).click();
-    driver.findElement(By.linkText("Logout")).click();
+    driver.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
+  }
+
+  private void initGroupCreation(String s) {
+    driver.findElement(By.name(s)).click();
+  }
+
+  private void gotoGroupPage(String groups) {
+    exitLogout(groups);
   }
 
   @AfterClass(alwaysRun = true)
