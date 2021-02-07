@@ -2,45 +2,44 @@ package ru.stqa.pft.addressbook;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.fail;
 
 public class TestBase {
-    private WebDriver driver;
+    private WebDriver wd;
     private String baseUrl;
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
 
-    @BeforeClass(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
       System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
-      driver = new ChromeDriver();
+      wd = new ChromeDriver();
       baseUrl = "https://www.google.com/";
-      driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-      driver.get("http://localhost/addressbook/group.php");
+      wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+      wd.get("http://localhost/addressbook/group.php");
       login("admin", "secret");
-
     }
 
     private void login(String username, String password) {
       submitGroupCreation("user");
-      driver.findElement(By.name("user")).clear();
-      driver.findElement(By.name("user")).sendKeys(username);
-      driver.findElement(By.name("pass")).clear();
-      driver.findElement(By.name("pass")).sendKeys(password);
-      driver.findElement(By.id("LoginForm")).submit();
+      wd.findElement(By.name("user")).clear();
+      wd.findElement(By.name("user")).sendKeys(username);
+      wd.findElement(By.name("pass")).clear();
+      wd.findElement(By.name("pass")).sendKeys(password);
+      wd.findElement(By.id("LoginForm")).submit();
     }
 
     protected void exitLogout(String logout) {
-      driver.findElement(By.linkText(logout)).click();
+      wd.findElement(By.linkText(logout)).click();
     }
 
-    protected void returnToGroupPage(String s) {
-      exitLogout(s);
+    protected void returnToGroupPage() {
+        wd.findElement(By.linkText("group page")).click();
     }
 
     protected void submitGroupCreation(String submit) {
@@ -48,25 +47,25 @@ public class TestBase {
     }
 
     protected void fillGroupForm(GroupData groupData) {
-      driver.findElement(By.name("group_name")).clear();
-      driver.findElement(By.name("group_name")).sendKeys(groupData.getName());
-      driver.findElement(By.name("group_header")).clear();
-      driver.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
-      driver.findElement(By.name("group_footer")).clear();
-      driver.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
+      wd.findElement(By.name("group_name")).clear();
+      wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
+      wd.findElement(By.name("group_header")).clear();
+      wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
+      wd.findElement(By.name("group_footer")).clear();
+      wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
     }
 
     protected void initGroupCreation(String s) {
-      driver.findElement(By.name(s)).click();
+      wd.findElement(By.name(s)).click();
     }
 
-    protected void gotoGroupPage(String groups) {
-        driver.findElement(By.linkText("groups")).click();
+    protected void gotoGroupPage() {
+        wd.findElement(By.linkText("groups")).click();
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void tearDown() throws Exception {
-      driver.quit();
+      wd.quit();
       String verificationErrorString = verificationErrors.toString();
       if (!"".equals(verificationErrorString)) {
         fail(verificationErrorString);
@@ -75,7 +74,7 @@ public class TestBase {
 
     private boolean isElementPresent(By by) {
       try {
-        driver.findElement(by);
+        wd.findElement(by);
         return true;
       } catch (NoSuchElementException e) {
         return false;
@@ -84,7 +83,7 @@ public class TestBase {
 
     private boolean isAlertPresent() {
       try {
-        driver.switchTo().alert();
+        wd.switchTo().alert();
         return true;
       } catch (NoAlertPresentException e) {
         return false;
@@ -93,7 +92,7 @@ public class TestBase {
 
     private String closeAlertAndGetItsText() {
       try {
-        Alert alert = driver.switchTo().alert();
+        Alert alert = wd.switchTo().alert();
         String alertText = alert.getText();
         if (acceptNextAlert) {
           alert.accept();
@@ -106,11 +105,11 @@ public class TestBase {
       }
     }
 
-    protected void deleteSelectedGroups(String delete) {
-      driver.findElement(By.name(delete)).click();
+    protected void deleteSelectedGroups() {
+      wd.findElement(By.name("delete")).click();
     }
 
-    protected void selectGroup(String s) {
-      driver.findElement(By.name(s)).click();
+    protected void selectGroup() {
+      wd.findElement(By.name("selected[]")).click();
     }
 }

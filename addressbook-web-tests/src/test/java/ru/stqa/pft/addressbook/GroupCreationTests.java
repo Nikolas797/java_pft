@@ -13,13 +13,13 @@ public class GroupCreationTests extends TestBase {
 
   @Test
   public void testGroupCreation() throws Exception {
-    gotoGroupPage("groups");
+    gotoGroupPage();
     submitGroupCreation("new");
     submitGroupCreation("group_name");
     fillGroupForm(new GroupData("test2", "test3", "test4"));
     submitGroupCreation("submit");
-    returnToGroupPage("group page");
-    gotoGroupPage("Logout");
+    returnToGroupPage();
+    gotoGroupPage();
   }
 
 }
