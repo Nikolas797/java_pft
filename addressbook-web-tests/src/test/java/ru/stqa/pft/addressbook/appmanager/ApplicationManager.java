@@ -2,18 +2,17 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+
 import java.util.concurrent.TimeUnit;
 import static org.testng.Assert.fail;
 
 public class ApplicationManager {
-
     WebDriver wd;
 
     private SessionHelper sessionHelper;
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
-    private boolean acceptNextAlert = true;
-    private StringBuffer verificationErrors = new StringBuffer();
+    private ContactHelper contactHelper;
 
     public void init() {
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
@@ -23,6 +22,7 @@ public class ApplicationManager {
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);
         sessionHelper = new SessionHelper(wd);
+        contactHelper = new ContactHelper(wd);
         sessionHelper.login("admin", "secret");
     }
 
@@ -32,25 +32,7 @@ public class ApplicationManager {
 
     public void stop() {
         wd.quit();
-        String verificationErrorString = verificationErrors.toString();
-        if (!"".equals(verificationErrorString)) {
-          fail(verificationErrorString);
-        }
-    }
 
-    public String closeAlertAndGetItsText() {
-        try {
-            Alert alert = wd.switchTo().alert();
-            String alertText = alert.getText();
-            if (acceptNextAlert) {
-                alert.accept();
-            } else {
-                alert.dismiss();
-            }
-            return alertText;
-        } finally {
-            acceptNextAlert = true;
-        }
     }
 
     public GroupHelper getGroupHelper() {
@@ -59,6 +41,10 @@ public class ApplicationManager {
 
     public NavigationHelper getNavigationHelper() {
         return navigationHelper;
+    }
+
+    public ContactHelper getContactHelper() {
+        return contactHelper;
     }
 
 }
