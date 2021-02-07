@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 import static org.testng.Assert.*;
 import org.openqa.selenium.*;
+import ru.stqa.pft.addressbook.model.NewContatData;
 
 public class AddNewContact {
   private WebDriver driver;
