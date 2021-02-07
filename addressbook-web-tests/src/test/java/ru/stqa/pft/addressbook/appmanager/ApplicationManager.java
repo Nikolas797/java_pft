@@ -12,14 +12,12 @@ public class ApplicationManager {
     private SessionHelper sessionHelper;
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
-    private String baseUrl;
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
 
     public void init() {
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         wd = new ChromeDriver();
-        baseUrl = "https://www.google.com/";
         wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/group.php");
         groupHelper = new GroupHelper(wd);
