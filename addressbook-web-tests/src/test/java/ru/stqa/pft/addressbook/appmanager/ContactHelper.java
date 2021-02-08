@@ -8,7 +8,6 @@ import ru.stqa.pft.addressbook.model.NewContactData;
 import static org.testng.Assert.assertTrue;
 
 public class ContactHelper extends HelperBase {
-    WebDriver wd;
 
     public ContactHelper(WebDriver wd){
         super(wd);
