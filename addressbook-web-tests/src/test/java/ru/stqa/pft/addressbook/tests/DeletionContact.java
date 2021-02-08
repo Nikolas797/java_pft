@@ -1,8 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.*;
-import static org.testng.Assert.*;
-import org.openqa.selenium.*;
+
 
 public class DeletionContact extends TestBase{
 
@@ -18,5 +17,5 @@ public class DeletionContact extends TestBase{
 //    private void submitDeleteContact() {
 //        assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
 //    }
-  
+
 }
