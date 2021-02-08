@@ -4,6 +4,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
+
+import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.fail;
 
 public class ApplicationManager {

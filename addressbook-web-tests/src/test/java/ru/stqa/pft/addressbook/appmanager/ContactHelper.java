@@ -1,8 +1,11 @@
 package ru.stqa.pft.addressbook.appmanager;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.addressbook.model.NewContactData;
+
+import static org.testng.Assert.assertTrue;
 
 public class ContactHelper extends HelperBase {
 
@@ -31,4 +34,12 @@ public class ContactHelper extends HelperBase {
         wd.findElement(locator1).sendKeys(text1);
     }
 
+    public void deleteContact() {
+        click(By.xpath("//input[@value='Delete']"));
+        wd.switchTo().alert().accept();
+    }
+
+    public void selectContact() {
+        click(By.id("19"));
+    }
 }
