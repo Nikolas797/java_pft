@@ -11,7 +11,7 @@ public class AddNewContact extends TestBase {
     app.getContactHelper().fillNewContact(new NewContactData("nk", "emp", "qa", "Q"));
     app.getContactHelper().submitContactCreation();
     app.getContactHelper().returnToContactPage();
-    app.exitLogout();
+
   }
 
 

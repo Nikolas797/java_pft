@@ -8,6 +8,7 @@ import ru.stqa.pft.addressbook.model.NewContactData;
 import static org.testng.Assert.assertTrue;
 
 public class ContactHelper extends HelperBase {
+    WebDriver wd;
 
     public ContactHelper(WebDriver wd){
         super(wd);
@@ -34,20 +35,34 @@ public class ContactHelper extends HelperBase {
         wd.findElement(locator1).sendKeys(text1);
     }
 
-    public void deleteContact() {
+//    public void deleteContact() {
+//        click(By.xpath("//input[@value='selected[]']"));
+//    }
+
+    private boolean acceptNextAlert = true;
+
+    public void submitDeleteContact() {
         click(By.xpath("//input[@value='Delete']"));
         wd.switchTo().alert().accept();
     }
 
     public void selectContact() {
-        click(By.id("19"));
+        click(By.xpath("(//input[@name='selected[]'])"));
     }
 
     public void initContactModification() {
-        click(By.xpath("(//img[@alt='Edit'])[5]"));
+        click(By.xpath("(//img[@alt='Edit'])"));
     }
 
     public void submitContactModification() {
-        click(By.xpath("(//input[@name='update'])[2]"));
+        click(By.xpath("(//input[@name='update'])"));
+    }
+
+    public boolean isAcceptNextAlert() {
+        return acceptNextAlert;
+    }
+
+    public void setAcceptNextAlert(boolean acceptNextAlert) {
+        this.acceptNextAlert = acceptNextAlert;
     }
 }
