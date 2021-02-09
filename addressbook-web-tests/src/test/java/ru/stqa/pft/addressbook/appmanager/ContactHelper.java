@@ -34,14 +34,13 @@ public class ContactHelper extends HelperBase {
         wd.findElement(locator1).sendKeys(text1);
     }
 
-//    public void deleteContact() {
-//        click(By.xpath("//input[@value='selected[]']"));
-//    }
+    public void deleteContact() {
+        click(By.xpath("//input[@value='Delete']"));
+    }
 
     private boolean acceptNextAlert = true;
 
     public void submitDeleteContact() {
-        click(By.xpath("//input[@value='Delete']"));
         wd.switchTo().alert().accept();
     }
 
