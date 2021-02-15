@@ -1,11 +1,8 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.addressbook.model.NewContactData;
-
-import static org.testng.Assert.assertTrue;
 
 public class ContactHelper extends HelperBase {
 
