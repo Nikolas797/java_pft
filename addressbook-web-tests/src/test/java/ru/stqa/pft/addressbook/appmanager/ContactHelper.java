@@ -25,10 +25,21 @@ public class ContactHelper extends HelperBase {
         typeb(By.name("company"), newContactData.getCompany());
     }
 
+    public void click1(By locator1) { wd.findElement(locator1).click(); }
+    
     private void typeb(By locator1, String text1) {
-        wd.findElement(locator1).click();
-        wd.findElement(locator1).clear();
-        wd.findElement(locator1).sendKeys(text1);
+//        wd.findElement(locator1).click();
+//        wd.findElement(locator1).clear();
+//        wd.findElement(locator1).sendKeys(text1);
+        click1(locator1);
+        if (text1 != null) {
+            String existingText = wd.findElement(locator1).getAttribute("value");
+            if (!text1.equals(existingText)) {
+                wd.findElement(locator1).click();
+                wd.findElement(locator1).clear();
+                wd.findElement(locator1).sendKeys(text1);
+            }
+        }
     }
 
     public void deleteContact() {
@@ -46,6 +57,10 @@ public class ContactHelper extends HelperBase {
     }
 
     public void initContactModification() {
+        if(isElementPresent(By.tagName("h1"))
+                && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")) {
+            return;
+        }
         click(By.xpath("(//img[@alt='Edit'])"));
     }
 
@@ -60,4 +75,16 @@ public class ContactHelper extends HelperBase {
     public void setAcceptNextAlert(boolean acceptNextAlert) {
         this.acceptNextAlert = acceptNextAlert;
     }
+
+    public void createContact(NewContactData contact) {
+        fillNewContact(contact);
+        submitContactCreation();
+        returnToContactPage();
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.xpath("(//input[@name='selected[]'])"));
+    }
 }
+
+

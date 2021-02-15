@@ -9,7 +9,10 @@ public class NavigationHelper extends HelperBase {
         super(wd);
     }
 
-    public void goToAddNew() { click(By.linkText("add new")); }
+    public void goToAddNew() {
+        click(By.linkText("add new"));
+    }
+
 
     public void gotoGroupPage() {
         if(isElementPresent(By.tagName("h1"))
@@ -20,11 +23,11 @@ public class NavigationHelper extends HelperBase {
         click(By.linkText("groups"));
     }
 
+
     public void goToHomeContact() {
         if (isElementPresent(By.id("maintable"))){
             return;
         }
-        click(By.linkText("home"));
+        click(By.linkText("add new"));
     }
-
 }

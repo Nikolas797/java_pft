@@ -8,12 +8,7 @@ public class AddNewContact extends TestBase {
   @Test
   public void testAddNewContact() throws Exception {
     app.getNavigationHelper().goToAddNew();
-    app.getContactHelper().fillNewContact(new NewContactData("nk", "emp", "qa", "Q"));
-    app.getContactHelper().submitContactCreation();
-    app.getContactHelper().returnToContactPage();
-
+    app.getContactHelper().createContact(new NewContactData("nk", "emp", "qa", "AH"));
+    app.exitLogout();
   }
-
-
-
 }
