@@ -1,12 +1,12 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.openqa.selenium.By;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
 
 public class DeletionContact extends TestBase{
 
-    @Test
+
+  @Test
   public void testDeletionContact() throws Exception {
     app.getNavigationHelper().goToHomeContact();
     app.getContactHelper().selectContact();
