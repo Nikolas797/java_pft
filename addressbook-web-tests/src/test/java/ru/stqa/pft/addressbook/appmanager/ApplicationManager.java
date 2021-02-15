@@ -25,13 +25,13 @@ public class ApplicationManager {
 
 
     public void init() {
-        if (browser == BrowserType.CHROME) {
+        if (browser.equals(BrowserType.CHROME)) {
             wd = new ChromeDriver();
         } else if (browser.equals(BrowserType.FIREFOX)) {
             String pathToGeckoDriver = Paths.get("/Users/ah/Documents/GitHub/java_pft/geckodriver").toAbsolutePath().toString();
             System.setProperty("webdriver.gecko.driver", pathToGeckoDriver);
             wd = new FirefoxDriver();
-        } else if (browser == BrowserType.SAFARI) {
+        } else if (browser.equals(BrowserType.SAFARI)) {
             wd = new SafariDriver();
         }
 
