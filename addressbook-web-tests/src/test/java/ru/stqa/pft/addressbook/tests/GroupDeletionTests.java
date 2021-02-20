@@ -17,5 +17,4 @@ public class GroupDeletionTests extends TestBase{
     app.getGroupHelper().returnToGroupPage();
     app.exitLogout();
   }
-
 }

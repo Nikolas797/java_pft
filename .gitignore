@@ -20,3 +20,11 @@ sandbox/build/libs/sandbox.jar
 sandbox/build/distributions/sandbox.zip
 sandbox/build/scripts/sandbox.bat
 .bash_profile.swp
+addressbook-web-tests/build/classes/java/test/ru/stqa/pft/addressbook/appmanager/NavigationHelper.class
+*.class
+sandbox/build/test-results/test/TEST-ru.stqa.pft.sandbox.EquationTests.xml
+sandbox/build/reports/tests/test/packages/ru.stqa.pft.sandbox.html
+sandbox/build/reports/tests/test/index.html
+sandbox/build/reports/tests/test/css/style.css
+sandbox/build/reports/tests/test/css/base-style.css
+sandbox/build/reports/tests/test/classes/ru.stqa.pft.sandbox.EquationTests.html

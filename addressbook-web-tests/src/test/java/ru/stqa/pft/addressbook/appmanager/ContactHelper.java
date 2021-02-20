@@ -26,7 +26,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void click1(By locator1) { wd.findElement(locator1).click(); }
-    
+
     private void typeb(By locator1, String text1) {
 //        wd.findElement(locator1).click();
 //        wd.findElement(locator1).clear();
