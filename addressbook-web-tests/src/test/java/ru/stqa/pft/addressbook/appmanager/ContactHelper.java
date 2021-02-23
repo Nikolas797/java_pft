@@ -52,8 +52,9 @@ public class ContactHelper extends HelperBase {
         wd.switchTo().alert().accept();
     }
 
-    public void selectContact() {
-        click(By.xpath("(//input[@name='selected[]'])"));
+    public void selectContact(int index) {
+        wd.findElements(By.xpath("(//input[@name='selected[]'])")).get(index).click();
+//        click(By.xpath("(//input[@name='selected[]'])"));
     }
 
     public void initContactModification() {
