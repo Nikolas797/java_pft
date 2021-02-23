@@ -2,7 +2,7 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import ru.stqa.pft.addressbook.model.NewContactData;
+import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
 
@@ -18,11 +18,11 @@ public class ContactHelper extends HelperBase {
         click(By.name("submit"));
     }
 
-    public void fillNewContact(NewContactData newContactData) {
-        typeb(By.name("firstname"), newContactData.getName());
-        typeb(By.name("lastname"), newContactData.getLastname());
-        typeb(By.name("title"), newContactData.getTitle());
-        typeb(By.name("company"), newContactData.getCompany());
+    public void fillNewContact(ContactData contactData) {
+        typeb(By.name("firstname"), contactData.getName());
+        typeb(By.name("lastname"), contactData.getLastname());
+        typeb(By.name("title"), contactData.getTitle());
+        typeb(By.name("company"), contactData.getCompany());
     }
 
     public void click1(By locator1) { wd.findElement(locator1).click(); }
@@ -77,7 +77,7 @@ public class ContactHelper extends HelperBase {
         this.acceptNextAlert = acceptNextAlert;
     }
 
-    public void createContact(NewContactData contact) {
+    public void createContact(ContactData contact) {
         fillNewContact(contact);
         submitContactCreation();
         returnToContactPage();
