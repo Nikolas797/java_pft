@@ -7,8 +7,8 @@ public class ContactData {
     private final String title;
     private final String company;
 
-    public ContactData( String name, String lastname, String title, String company) {
-        this.id = 0;
+    public ContactData(String name, String lastname, String title, String company) {
+        this.id = Integer.MAX_VALUE;
         this.name = name;
         this.lastname = lastname;
         this.title = title;
@@ -40,10 +40,19 @@ public class ContactData {
         return lastname;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
     @Override
     public String toString() {
         return "ContactData{" +
-                "id='" + id + '\'' +
+                "name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
                 '}';
     }
 
@@ -54,20 +63,15 @@ public class ContactData {
 
         ContactData that = (ContactData) o;
 
-        return id == that.id;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
     }
 
     @Override
     public int hashCode() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getCompany() {
-        return company;
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+        return result;
     }
 
 }
