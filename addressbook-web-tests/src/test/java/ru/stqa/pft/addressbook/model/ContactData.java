@@ -1,21 +1,21 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-    private final String id;
+    private int id;
     private final String name;
     private final String lastname;
     private final String title;
     private final String company;
 
     public ContactData( String name, String lastname, String title, String company) {
-        this.id = null;
+        this.id = 0;
         this.name = name;
         this.lastname = lastname;
         this.title = title;
         this.company = company;
     }
 
-    public ContactData(String id, String name, String lastname, String title, String company) {
+    public ContactData(int id, String name, String lastname, String title, String company) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
@@ -24,10 +24,13 @@ public class ContactData {
     }
 
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -51,12 +54,12 @@ public class ContactData {
 
         ContactData that = (ContactData) o;
 
-        return id != null ? id.equals(that.id) : that.id == null;
+        return id == that.id;
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return id;
     }
 
     public String getTitle() {
@@ -66,6 +69,5 @@ public class ContactData {
     public String getCompany() {
         return company;
     }
-
 
 }
