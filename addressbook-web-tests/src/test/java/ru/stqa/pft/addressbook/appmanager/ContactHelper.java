@@ -100,18 +100,28 @@ public class ContactHelper extends HelperBase {
 
     public List<ContactData> getContactList() {
         List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> rows = wd.findElements(By.cssSelector("tr[name='entry']"));
-//        List<WebElement> elements = wd.findElements((By.xpath("//*[@name=\"entry\"]")));
-        for(WebElement row : rows){
-            String name = row.findElement(By.cssSelector("td:nth-child(2)")).getText();
-//            String lastname = row.findElement(By.cssSelector("td:nth-child(3)")).getText();
-            String id = row.findElement(By.cssSelector("td:nth-child(1)")).getText();
-//            String id = row.findElement(By.tagName("a")).getAttribute("id");
-            ContactData contact = new ContactData(id , name , "emp","qa", "ah");
+        List<WebElement> elements = wd.findElements((By.xpath("//*[@name=\"entry\"]")));
+        for (WebElement element : elements) {
+            String name = element.getText();
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            ContactData contact = new ContactData("nk", "emp", "qa", "ah");
             contacts.add(contact);
         }
         return contacts;
     }
+//        List<ContactData> contacts = new ArrayList<ContactData>();
+//        List<WebElement> rows = wd.findElements(By.cssSelector("tr[name='entry']"));
+////        List<WebElement> elements = wd.findElements((By.xpath("//*[@name=\"entry\"]")));
+//        for(WebElement row : rows){
+//            String name = row.findElement(By.cssSelector("td:nth-child(2)")).getText();
+////            String lastname = row.findElement(By.cssSelector("td:nth-child(3)")).getText();
+//            String id = row.findElement(By.cssSelector("td:nth-child(1)")).getText();
+////            String id = row.findElement(By.tagName("a")).getAttribute("id");
+//            ContactData contact = new ContactData(id , name , "emp","qa", "ah");
+//            contacts.add(contact);
+//        }
+//        return contacts;
+//    }
 }
 
 
