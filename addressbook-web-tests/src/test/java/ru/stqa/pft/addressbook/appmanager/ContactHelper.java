@@ -10,6 +10,8 @@ import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
+    private int index;
+
     public ContactHelper(WebDriver wd){
         super(wd);
     }
@@ -61,12 +63,13 @@ public class ContactHelper extends HelperBase {
 //        click(By.xpath("(//input[@name='selected[]'])"));
     }
 
-    public void initContactModification() {
-        if(isElementPresent(By.tagName("h1"))
-                && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")) {
-            return;
-        }
-        click(By.xpath("(//img[@alt='Edit'])"));
+    public void initContactModification(int index) {
+        wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
+//        if(isElementPresent(By.tagName("h1"))
+//                && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")) {
+//            return;
+//        }
+//        click(By.xpath("(//img[@alt='Edit'])"));
     }
 
     public void submitContactModification() {
@@ -97,10 +100,14 @@ public class ContactHelper extends HelperBase {
 
     public List<ContactData> getContactList() {
         List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> elements = wd.findElements((By.xpath("//*[@name=\"entry\"]")));
-        for(WebElement element : elements){
-            String name = element.getText();
-            ContactData contact = new ContactData("nk","emp","qa", "ah");
+        List<WebElement> rows = wd.findElements(By.cssSelector("tr[name='entry']"));
+//        List<WebElement> elements = wd.findElements((By.xpath("//*[@name=\"entry\"]")));
+        for(WebElement row : rows){
+            String name = row.findElement(By.cssSelector("td:nth-child(2)")).getText();
+//            String lastname = row.findElement(By.cssSelector("td:nth-child(3)")).getText();
+            String id = row.findElement(By.cssSelector("td:nth-child(1)")).getText();
+//            String id = row.findElement(By.tagName("a")).getAttribute("id");
+            ContactData contact = new ContactData(id , name , "emp","qa", "ah");
             contacts.add(contact);
         }
         return contacts;
