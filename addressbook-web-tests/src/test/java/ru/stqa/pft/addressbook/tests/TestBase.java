@@ -20,13 +20,4 @@ public class TestBase {
         app.stop();
     }
 
-//
-//    private boolean isElementPresent(By by) {
-//      try {
-//        wd.findElement(by);
-//        return true;
-//      } catch (NoSuchElementException e) {
-//        return false;
-//      }
-//    }
 }

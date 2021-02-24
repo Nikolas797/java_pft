@@ -60,7 +60,6 @@ public class ContactHelper extends HelperBase {
 
     public void selectContact(int index) {
         wd.findElements(By.xpath("(//input[@name='selected[]'])")).get(index).click();
-//        click(By.xpath("(//input[@name='selected[]'])"));
     }
 
     public void initContactModification(int index) {
@@ -111,12 +110,12 @@ public class ContactHelper extends HelperBase {
     }
 //        List<ContactData> contacts = new ArrayList<ContactData>();
 //        List<WebElement> rows = wd.findElements(By.cssSelector("tr[name='entry']"));
-////        List<WebElement> elements = wd.findElements((By.xpath("//*[@name=\"entry\"]")));
+//        List<WebElement> elements = wd.findElements((By.xpath("//*[@name=\"entry\"]")));
 //        for(WebElement row : rows){
 //            String name = row.findElement(By.cssSelector("td:nth-child(2)")).getText();
-////            String lastname = row.findElement(By.cssSelector("td:nth-child(3)")).getText();
+//            String lastname = row.findElement(By.cssSelector("td:nth-child(3)")).getText();
 //            String id = row.findElement(By.cssSelector("td:nth-child(1)")).getText();
-////            String id = row.findElement(By.tagName("a")).getAttribute("id");
+//            String id = row.findElement(By.tagName("a")).getAttribute("id");
 //            ContactData contact = new ContactData(id , name , "emp","qa", "ah");
 //            contacts.add(contact);
 //        }
