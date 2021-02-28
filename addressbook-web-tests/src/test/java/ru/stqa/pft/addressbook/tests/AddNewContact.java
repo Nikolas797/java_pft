@@ -9,11 +9,11 @@ import java.util.List;
 
 public class AddNewContact extends TestBase {
 
-  @Test
+  @Test(enabled = false)
   public void testAddNewContact() throws Exception {
-    app.getNavigationHelper().goToHomeContact();
+    app.goTo().goToHomeContact();
     List<ContactData> before = app.getContactHelper().getContactList();
-    app.getNavigationHelper().goToAddNew();
+    app.goTo().goToAddNew();
     ContactData contact = new ContactData("nk", "emp", "qa", "AH");
     app.getContactHelper().createContact(contact);
     List<ContactData> after = app.getContactHelper().getContactList();

@@ -10,9 +10,9 @@ import java.util.List;
 public class DeletionContact extends TestBase{
 
 
-  @Test
+  @Test(enabled = false)
   public void testDeletionContact() throws Exception {
-    app.getNavigationHelper().goToHomePage();
+    app.goTo().goToHomePage();
     if (! app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new ContactData("nk", "emp", "qa", "AH"));
     }
@@ -20,7 +20,7 @@ public class DeletionContact extends TestBase{
     app.getContactHelper().selectContact(before.size() - 1);
     app.getContactHelper().deleteContact();
     app.getContactHelper().submitDeleteContact();
-    app.getNavigationHelper().goToHomePage();
+    app.goTo().goToHomePage();
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size() - 1);
 

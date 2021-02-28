@@ -9,9 +9,9 @@ import java.util.List;
 
 public class ContactModificationTests extends TestBase {
 
-    @Test
+    @Test(enabled = false)
     public void testContactModification() throws Exception {
-        app.getNavigationHelper().goToHomePage();
+        app.goTo().goToHomePage();
         if (! app.getContactHelper().isThereAContact()) {
             app.getContactHelper().createContact(new ContactData("nk", "emp","qa", "ah"));
         }
@@ -21,7 +21,7 @@ public class ContactModificationTests extends TestBase {
         ContactData contact = new ContactData(before.get(before.size() - 1).getId(),"nk", "emp", "qa", "AH");
         app.getContactHelper().fillNewContact(contact);
         app.getContactHelper().submitContactModification();
-        app.getNavigationHelper().goToHomeContact();
+        app.goTo().goToHomeContact();
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size());
 
