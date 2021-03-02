@@ -16,8 +16,8 @@ public class AddNewContact extends TestBase {
     app.goTo().goToAddNew();
     ContactData contact = new ContactData().withName("nk").withLastname("emp").withTitle("qa").withCompany("AH");
     app.contact().create(contact);
+    assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.contact().list();
-    assertThat(after.size(), equalTo(before.size() + 1));
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId()))));
 //    app.exitLogout();
