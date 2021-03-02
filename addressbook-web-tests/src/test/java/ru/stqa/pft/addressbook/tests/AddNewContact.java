@@ -1,24 +1,31 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.Comparator;
-import java.util.List;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class AddNewContact extends TestBase {
 
   @Test()
   public void testAddNewContact() throws Exception {
     app.goTo().homeContact();
-    List<ContactData> before = app.contact().list();
+    Contacts before = app.contact().list();
     app.goTo().goToAddNew();
     ContactData contact = new ContactData().withName("nk").withLastname("emp").withTitle("qa").withCompany("AH");
     app.contact().create(contact);
-    List<ContactData> after = app.contact().list();
-    Assert.assertEquals(after.size(), before.size() + 1);
+    Contacts after = app.contact().list();
+    assertThat(after.size(), equalTo(before.size() + 1));
+    assertThat(after, equalTo(
+            before.withAdded(contact.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId()))));
+//    app.exitLogout();
 
+
+//    contact.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+//    before.add(contact);
+//    Assert.assertEquals(before, after);
 //    int max = 0;
 //    for(ContactData c : after){
 //      if(c.getId() > max) {
@@ -26,12 +33,6 @@ public class AddNewContact extends TestBase {
 //      }
 //    }
 
-//    contact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
-    before.add(contact);
-    Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-    before.sort(byId);
-    after.sort(byId);
-    Assert.assertEquals(before, after);
-//    app.exitLogout();
+
   }
 }
