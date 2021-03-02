@@ -23,7 +23,6 @@ public class ApplicationManager {
         this.browser = browser;
     }
 
-
     public void init() {
         if (browser.equals(BrowserType.CHROME)) {
             wd = new ChromeDriver();
@@ -53,7 +52,6 @@ public class ApplicationManager {
 
     public void stop() {
         wd.quit();
-
     }
 
     public GroupHelper group() {
