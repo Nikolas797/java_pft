@@ -17,7 +17,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void returnToContactPage() {
-        click(By.linkText("home page"));
+        click(By.linkText("home"));
     }
 
     public void submitContactCreation() {
@@ -110,11 +110,10 @@ public class ContactHelper extends HelperBase {
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements = wd.findElements((By.xpath("//*[@name=\"entry\"]")));
         for (WebElement element : elements) {
-            int id = Integer.parseInt(element.findElement(By.cssSelector("td:nth-child(1) input")).getAttribute("value"));
             String lastname = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
             String name = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
-            ContactData contact = new ContactData(id, name , lastname, "qa", "ah");
-            contacts.add(contact);
+            int id = Integer.parseInt(element.findElement(By.cssSelector("td:nth-child(1) input")).getAttribute("value"));
+            contacts.add(new ContactData().withId(id).withName(name).withLastname(lastname));
         }
         return contacts;
     }

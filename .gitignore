@@ -6,12 +6,16 @@ gradle-app.setting
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
+.idea/workspace.xml
 
 # Cache of project
 .gradletasknamecache
 
+*.jar
+
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+.idea/misc.xml
 .DS_Store
 sandbox/build/classes/java/main/MyFirstProgram.class
 sandbox/build/distributions/sandbox.tar
@@ -102,3 +106,72 @@ addressbook-web-tests/build/tmp/test/jar_extract_8817487458982109795_tmp
 addressbook-web-tests/build/test-results/test/TEST-ru.stqa.pft.addressbook.tests.GroupCreationTests.xml
 addressbook-web-tests/build/test-results/test/binary/results.bin
 addressbook-web-tests/build/reports/tests/test/packages/ru.stqa.pft.addressbook.tests.html
+addressbook-web-tests/build/tmp/test/jar_extract_1099368712919754416_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_1057845380767785937_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_1150300071140221506_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_1171566645686977360_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_1806798044940407331_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_1808641008717141193_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_2146215335932958306_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_2759666016189385715_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_2476131113407812449_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_3013901282004579140_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_3451624584954948583_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_3550433685760284995_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_3863392934205032986_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_3973810364223631775_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_3742270630101493961_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_3725596641418417476_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_4060465354984554016_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_4349313225000000054_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_5227626484361815141_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_5028262756165378765_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_4081323651507464986_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_5615679149606241677_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_5225224499628894141_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_5620191601807846646_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_6023581933171540909_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_6733963435939765816_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_650381759276930611_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_6093935805163299033_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_710991355477571438_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_6783784641267002320_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_1394286659214101719_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_1739677087338005279_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_1950700433729999843_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_1808975397589924547_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_2295799916413412438_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_248060743639733763_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_1783030902097969898_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_3196474106547481460_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_3320371205211754483_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_3194704121172688265_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_4418024869489428668_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_3525005585596506990_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_4966842353801400754_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_5240569245253169783_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_5097723487349112205_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_5243343953347450486_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_5304086773587816517_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_5563872653456166924_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_5721418459098567472_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_7671831947133563857_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_7486771691774847751_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_7773408216037195255_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_3396884364888144004_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_7776565157145765434_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_7744065555537802642_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_7812928054059808555_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_7931424194734589696_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_7982544193113900033_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_8138551425166441240_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_819272401944536774_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_2576045680712932240_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_8265997833226971314_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_8309663589279873007_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_8467643859845379537_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_8590006628789618329_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_9171540654120232329_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_8572107214591546249_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_8285359281732995098_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_998752983271699947_tmp

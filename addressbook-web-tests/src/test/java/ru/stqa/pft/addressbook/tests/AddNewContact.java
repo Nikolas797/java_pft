@@ -14,7 +14,7 @@ public class AddNewContact extends TestBase {
     app.goTo().homeContact();
     List<ContactData> before = app.contact().list();
     app.goTo().goToAddNew();
-    ContactData contact = new ContactData("nk", "emp", "qa", "AH");
+    ContactData contact = new ContactData().withName("nk").withLastname("emp").withTitle("qa").withCompany("AH");
     app.contact().create(contact);
     List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() + 1);
