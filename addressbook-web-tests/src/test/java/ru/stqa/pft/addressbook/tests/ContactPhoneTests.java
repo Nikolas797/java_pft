@@ -4,14 +4,20 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class ContactPhoneTests extends TestBase {
 
 
     @BeforeMethod
     public void ensurePreconditions(){
         app.goTo().homePage();
-        if (app.contact().list().size() == 0) {
-            app.contact().create(new ContactData().withName("nk").withLastname("emp").withTitle("qa").withCompany("AH").withMobilePhone("8-985-759-2332").withWorkPhone("123").withHomePhone("222").withEmail("nikolas797@mail.ru"));
+        if (app.contact().all().size() == 0) {
+            app.contact().create(new ContactData().withName("nk").withLastname("emp").withTitle("qa").withCompany("AH").withMobilePhone("89857592332").withWorkPhone("123").withHomePhone("222").withEmail("nikolas797@mail.ru"));
         }
     }
 
@@ -19,7 +25,20 @@ public class ContactPhoneTests extends TestBase {
     @Test
     public void testContactPhones(){
         app.goTo().homeContact();
-        ContactData contact = app.contact().list().iterator().next();
+        ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+
+        assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
+    }
+
+    private String mergePhones(ContactData contact) {
+        return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
+                .stream().filter((s) -> ! s.equals(""))
+                .map(ContactPhoneTests::cleaned)
+                .collect(Collectors.joining("\n"));
+    }
+
+    public static String cleaned(String phone) {
+        return phone.replaceAll("\\s","").replaceAll("[-()]", "");
     }
 }

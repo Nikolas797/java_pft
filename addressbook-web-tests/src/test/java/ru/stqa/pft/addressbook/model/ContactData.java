@@ -10,7 +10,17 @@ public class ContactData {
     private String mobile;
     private String work;
     private String email;
+    private String allPhones;
 
+
+    public String getAllPhones() {
+        return allPhones;
+    }
+
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
 
     public int getId() {
         return id;
@@ -92,12 +102,6 @@ public class ContactData {
         this.email = email;
         return this;
     }
-
-
-
-
-
-
 
     @Override
     public boolean equals(Object o) {

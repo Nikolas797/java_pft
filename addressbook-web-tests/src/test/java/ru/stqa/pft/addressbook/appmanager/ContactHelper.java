@@ -136,18 +136,20 @@ public class ContactHelper extends HelperBase {
 
     private Contacts contactCache = null;
 
-    public Contacts list() {
+    public Contacts all() {
         if (contactCache != null) {
             return new Contacts(contactCache);
         }
         contactCache = new Contacts();
-
-        List<WebElement> elements = wd.findElements((By.xpath("//*[@name=\"entry\"]")));
-        for (WebElement element : elements) {
-            String lastname = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
-            String name = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
-            int id = Integer.parseInt(element.findElement(By.cssSelector("td:nth-child(1) input")).getAttribute("value"));
-            contactCache.add(new ContactData().withId(id).withName(name).withLastname(lastname));
+        List<WebElement> rows = wd.findElements(By.name("entry"));
+        for (WebElement row : rows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
+            String lastname = cells.get(1).getText();
+            String name = cells.get(2).getText();
+            String allPhones = cells.get(5).getText();
+            contactCache.add(new ContactData().withId(id).withName(name).withLastname(lastname)
+                    .withAllPhones(allPhones));
         }
         return new Contacts(contactCache);
     }
