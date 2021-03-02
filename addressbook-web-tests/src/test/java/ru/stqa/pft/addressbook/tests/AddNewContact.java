@@ -32,7 +32,5 @@ public class AddNewContact extends TestBase {
 //        max = c.getId();
 //      }
 //    }
-
-
   }
 }
