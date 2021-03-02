@@ -22,14 +22,14 @@ public class NavigationHelper extends HelperBase {
         click(By.linkText("groups"));
     }
 
-    public void goToHomeContact() {
+    public void homeContact() {
         if (isElementPresent(By.id("maintable"))){
             return;
         }
         click(By.linkText("home page"));
     }
 
-    public void goToHomePage() {
+    public void homePage() {
         click(By.linkText("home"));
     }
 }

@@ -11,12 +11,12 @@ public class AddNewContact extends TestBase {
 
   @Test()
   public void testAddNewContact() throws Exception {
-    app.goTo().goToHomeContact();
-    List<ContactData> before = app.getContactHelper().getContactList();
+    app.goTo().homeContact();
+    List<ContactData> before = app.contact().list();
     app.goTo().goToAddNew();
     ContactData contact = new ContactData("nk", "emp", "qa", "AH");
-    app.getContactHelper().createContact(contact);
-    List<ContactData> after = app.getContactHelper().getContactList();
+    app.contact().create(contact);
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() + 1);
 
 //    int max = 0;
@@ -32,6 +32,6 @@ public class AddNewContact extends TestBase {
     before.sort(byId);
     after.sort(byId);
     Assert.assertEquals(before, after);
-    app.exitLogout();
+//    app.exitLogout();
   }
 }
