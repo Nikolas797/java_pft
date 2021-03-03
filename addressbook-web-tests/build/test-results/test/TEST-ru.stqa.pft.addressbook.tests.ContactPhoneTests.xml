@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.stqa.pft.addressbook.tests.ContactPhoneTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-03-02T18:49:16" hostname="MacBook-Pro-8" time="0.356">
+<testsuite name="ru.stqa.pft.addressbook.tests.ContactPhoneTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2021-03-03T13:18:32" hostname="MacBook-Pro-8" time="1.364">
   <properties/>
-  <testcase name="testContactPhones" classname="ru.stqa.pft.addressbook.tests.ContactPhoneTests" time="0.356"/>
+  <testcase name="testContactAddress" classname="ru.stqa.pft.addressbook.tests.ContactPhoneTests" time="0.386"/>
+  <testcase name="testContactEmails" classname="ru.stqa.pft.addressbook.tests.ContactPhoneTests" time="0.368"/>
+  <testcase name="testContactPhones" classname="ru.stqa.pft.addressbook.tests.ContactPhoneTests" time="0.334"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
