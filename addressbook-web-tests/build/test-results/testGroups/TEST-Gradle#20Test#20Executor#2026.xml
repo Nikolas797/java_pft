@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Gradle Test Executor 19" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-03-10T16:35:32" hostname="MacBook-Pro-8" time="0.189">
+<testsuite name="Gradle Test Executor 26" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-03-10T16:37:07" hostname="MacBook-Pro-8" time="0.181">
   <properties/>
-  <testcase name="failed to execute tests" classname="Gradle Test Executor 19" time="0.189">
-    <failure message="org.gradle.api.internal.tasks.testing.TestSuiteExecutionException: Could not complete execution for Gradle Test Executor 19." type="org.gradle.api.internal.tasks.testing.TestSuiteExecutionException">org.gradle.api.internal.tasks.testing.TestSuiteExecutionException: Could not complete execution for Gradle Test Executor 19.
+  <testcase name="failed to execute tests" classname="Gradle Test Executor 26" time="0.181">
+    <failure message="org.gradle.api.internal.tasks.testing.TestSuiteExecutionException: Could not complete execution for Gradle Test Executor 26." type="org.gradle.api.internal.tasks.testing.TestSuiteExecutionException">org.gradle.api.internal.tasks.testing.TestSuiteExecutionException: Could not complete execution for Gradle Test Executor 26.
 	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
