@@ -1,0 +1,27 @@
+<list>
+  <contact>
+    <name>nk 0</name>
+    <lastname>emp 0</lastname>
+    <address>Ленина 0</address>
+  </contact>
+  <contact>
+    <name>nk 1</name>
+    <lastname>emp 1</lastname>
+    <address>Ленина 1</address>
+  </contact>
+  <contact>
+    <name>nk 2</name>
+    <lastname>emp 2</lastname>
+    <address>Ленина 2</address>
+  </contact>
+  <contact>
+    <name>nk 3</name>
+    <lastname>emp 3</lastname>
+    <address>Ленина 3</address>
+  </contact>
+  <contact>
+    <name>nk 4</name>
+    <lastname>emp 4</lastname>
+    <address>Ленина 4</address>
+  </contact>
+</list>
