@@ -175,3 +175,12 @@ addressbook-web-tests/build/tmp/test/jar_extract_9171540654120232329_tmp
 addressbook-web-tests/build/tmp/test/jar_extract_8572107214591546249_tmp
 addressbook-web-tests/build/tmp/test/jar_extract_8285359281732995098_tmp
 addressbook-web-tests/build/tmp/test/jar_extract_998752983271699947_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_7414969315806709853_tmp
+*.html
+addressbook-web-tests/build/test-results/test/binary/output.bin
+addressbook-web-tests/build/test-results/test/binary/output.bin.idx
+addressbook-web-tests/build/test-results/test/binary/results.bin
+addressbook-web-tests/build/test-results/test/TEST-ru.stqa.pft.addressbook.tests.AddNewContact.xml
+addressbook-web-tests/build/classes/java/test/ru/stqa/pft/addressbook/tests/GroupCreationTests.class
+addressbook-web-tests/build/reports/tests/test/index.html
+addressbook-web-tests/build/reports/tests/test/packages/ru.stqa.pft.addressbook.tests.html
