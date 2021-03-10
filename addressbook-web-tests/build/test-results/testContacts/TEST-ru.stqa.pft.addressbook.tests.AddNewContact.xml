@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.stqa.pft.addressbook.tests.AddNewContact" tests="6" skipped="0" failures="0" errors="0" timestamp="2021-03-10T15:19:41" hostname="MacBook-Pro-8" time="26.225">
+<testsuite name="ru.stqa.pft.addressbook.tests.AddNewContact" tests="6" skipped="0" failures="0" errors="0" timestamp="2021-03-10T16:22:19" hostname="MacBook-Pro-8" time="33.779">
   <properties/>
-  <testcase name="testAddNewContact[0](ContactData{id=0, name='nk 0', lastname='emp 0'})" classname="ru.stqa.pft.addressbook.tests.AddNewContact" time="7.55"/>
-  <testcase name="testAddNewContact[1](ContactData{id=0, name='nk 1', lastname='emp 1'})" classname="ru.stqa.pft.addressbook.tests.AddNewContact" time="4.533"/>
-  <testcase name="testAddNewContact[2](ContactData{id=0, name='nk 2', lastname='emp 2'})" classname="ru.stqa.pft.addressbook.tests.AddNewContact" time="4.792"/>
-  <testcase name="testAddNewContact[3](ContactData{id=0, name='nk 3', lastname='emp 3'})" classname="ru.stqa.pft.addressbook.tests.AddNewContact" time="4.618"/>
-  <testcase name="testAddNewContact[4](ContactData{id=0, name='nk 4', lastname='emp 4'})" classname="ru.stqa.pft.addressbook.tests.AddNewContact" time="4.725"/>
-  <testcase name="testCurrentDir" classname="ru.stqa.pft.addressbook.tests.AddNewContact" time="0.0"/>
+  <testcase name="testAddNewContact[0](ContactData{id=0, name='nk 0', lastname='emp 0'})" classname="ru.stqa.pft.addressbook.tests.AddNewContact" time="9.819"/>
+  <testcase name="testAddNewContact[1](ContactData{id=0, name='nk 1', lastname='emp 1'})" classname="ru.stqa.pft.addressbook.tests.AddNewContact" time="5.514"/>
+  <testcase name="testAddNewContact[2](ContactData{id=0, name='nk 2', lastname='emp 2'})" classname="ru.stqa.pft.addressbook.tests.AddNewContact" time="5.812"/>
+  <testcase name="testAddNewContact[3](ContactData{id=0, name='nk 3', lastname='emp 3'})" classname="ru.stqa.pft.addressbook.tests.AddNewContact" time="5.847"/>
+  <testcase name="testAddNewContact[4](ContactData{id=0, name='nk 4', lastname='emp 4'})" classname="ru.stqa.pft.addressbook.tests.AddNewContact" time="6.778"/>
+  <testcase name="testCurrentDir" classname="ru.stqa.pft.addressbook.tests.AddNewContact" time="0.002"/>
   <system-out><![CDATA[/Users/ah/Documents/GitHub/java_pft/addressbook-web-tests/.
 /Users/ah/Documents/GitHub/java_pft/addressbook-web-tests/src/test/resources/stru.png
 true

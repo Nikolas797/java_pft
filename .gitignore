@@ -184,3 +184,10 @@ addressbook-web-tests/build/test-results/test/TEST-ru.stqa.pft.addressbook.tests
 addressbook-web-tests/build/classes/java/test/ru/stqa/pft/addressbook/tests/GroupCreationTests.class
 addressbook-web-tests/build/reports/tests/test/index.html
 addressbook-web-tests/build/reports/tests/test/packages/ru.stqa.pft.addressbook.tests.html
+*.class
+*.class
+*.class
+addressbook-web-tests/build/tmp/test/jar_extract_1078745229274443290_tmp
+*.bin
+addressbook-web-tests/build/tmp/test/jar_extract_110768409805424939_tmp
+addressbook-web-tests/build/tmp/test/jar_extract_1151830768184257044_tmp
