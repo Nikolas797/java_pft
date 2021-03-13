@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.addressbook.tests.HbConnectionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-03-13T13:32:49" hostname="MacBook-Pro-8.local" time="0.362">
+  <properties/>
+  <testcase name="testHbConnection" classname="ru.stqa.pft.addressbook.tests.HbConnectionTest" time="0.362"/>
+  <system-out><![CDATA[16:32:46.820 [Test worker] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.22.Final
+16:32:47.435 [Test worker] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+16:32:47.594 [Test worker] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+16:32:47.605 [Test worker] INFO  o.hibernate.orm.connections.pooling - HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/addressbook]
+16:32:47.607 [Test worker] INFO  o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=root, password=}
+16:32:47.607 [Test worker] INFO  o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+16:32:47.610 [Test worker] INFO  o.h.e.j.c.i.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 1 (min=1)
+16:32:47.979 [Test worker] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+16:32:49.101 [Test worker] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3ae76442] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+16:32:49.150 [Test worker] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+Hibernate: select groupdata0_.group_id as group_id1_0_, groupdata0_.group_footer as group_fo2_0_, groupdata0_.group_header as group_he3_0_, groupdata0_.group_name as group_na4_0_ from group_list groupdata0_
+GroupData{id='65', name='test2'}
+GroupData{id='67', name='test2'}
+GroupData{id='68', name='test2'}
+GroupData{id='70', name='test1'}
+GroupData{id='71', name='test2'}
+GroupData{id='72', name='test3'}
+GroupData{id='73', name='test1'}
+GroupData{id='75', name='test3'}
+GroupData{id='76', name='test 0'}
+GroupData{id='77', name='test2'}
+GroupData{id='78', name='test 2'}
+GroupData{id='79', name='test1'}
+GroupData{id='81', name='test3'}
+GroupData{id='82', name='test 0'}
+GroupData{id='84', name='test 2'}
+GroupData{id='85', name='test 0'}
+GroupData{id='86', name='test 1'}
+GroupData{id='87', name='test 2'}
+GroupData{id='88', name='test 0'}
+GroupData{id='89', name='test 1'}
+GroupData{id='90', name='test 2'}
+GroupData{id='91', name='test 0'}
+GroupData{id='92', name='test 1'}
+GroupData{id='93', name='test 2'}
+GroupData{id='94', name='test 0'}
+GroupData{id='95', name='test 1'}
+GroupData{id='96', name='test 2'}
+GroupData{id='97', name='test 0'}
+GroupData{id='98', name='test 1'}
+GroupData{id='99', name='test 2'}
+GroupData{id='100', name='test2'}
+GroupData{id='101', name='test 1'}
+GroupData{id='102', name='test 2'}
+GroupData{id='103', name='test 0'}
+GroupData{id='104', name='test 1'}
+GroupData{id='105', name='test 2'}
+GroupData{id='106', name='test 0'}
+GroupData{id='107', name='test 1'}
+GroupData{id='108', name='test 2'}
+]]></system-out>
+  <system-err><![CDATA[Loading class `com.mysql.jdbc.Driver'. This is deprecated. The new driver class is `com.mysql.cj.jdbc.Driver'. The driver is automatically registered via the SPI and manual loading of the driver class is generally unnecessary.
+]]></system-err>
+</testsuite>
