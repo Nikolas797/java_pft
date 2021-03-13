@@ -2,34 +2,74 @@ package ru.stqa.pft.addressbook.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 
+@Entity
 @XStreamAlias("contact")
+@Table(name = "addressbook")
 public class ContactData {
-    @XStreamOmitField
-    private int id = Integer.MAX_VALUE;
-    private String name;
-    private String lastname;
-    private String title;
-    private String address;
-    private String company;
-    private String home;
-    private String mobile;
-    private String work;
-    private String email;
-    private String email2;
-    private String email3;
-    private String allEmails;
-    private String allPhones;
-    private File Photo;
 
-    public File getPhoto() {
-        return Photo;
-    }
+    @XStreamOmitField
+    @Id
+    @Column(name = "id")
+    private int id = Integer.MAX_VALUE;
+
+    @Column(name = "firstname")
+    private String name;
+
+    @Column(name = "lastname")
+    private String lastname;
+
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "company")
+    private String company;
+
+    @Column(name = "home")
+    @Type(type = "text")
+    private String home;
+
+    @Column(name = "mobile")
+    @Type(type = "text")
+    private String mobile;
+
+    @Column(name = "work")
+    @Type(type = "text")
+    private String work;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "email2")
+    private String email2;
+
+    @Column(name = "email3")
+    private String email3;
+
+    @Transient
+    private String allEmails;
+
+    @Transient
+    private String allPhones;
+
+    @Column(name = "photo")
+    @Type(type = "text")
+    private String photo;
+
+
+//    public File getPhoto() {
+//        return new File(photo) ;
+//    }
 
     public ContactData withPhoto(File photo) {
-        Photo = photo;
+        this.photo = photo.getPath();
         return this;
     }
 
@@ -160,6 +200,15 @@ public class ContactData {
     }
 
     @Override
+    public String toString() {
+        return "ContactData{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -175,15 +224,6 @@ public class ContactData {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "ContactData{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastname='" + lastname + '\'' +
-                '}';
     }
 
 }

@@ -36,7 +36,7 @@ public class ContactHelper extends HelperBase {
         typeb(By.name("email"), contactData.getEmail());
         typeb(By.name("email2"), contactData.getEmail2());
         typeb(By.name("email3"), contactData.getEmail3());
-        attach(By.name("photo"), contactData.getPhoto());
+//        attach(By.name("photo"), contactData.getPhoto());
     }
 
     public void click1(By locator1) {

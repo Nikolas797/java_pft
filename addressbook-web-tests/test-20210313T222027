@@ -1,0 +1,8 @@
+3433 [Test worker] INFO  r.s.pft.addressbook.tests.TestBase - Start test testAddNewContactwith parameters [ContactData{id=0, name='nk 0', lastname='emp 0'}]
+4615 [Test worker] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testAddNewContact
+4616 [Test worker] INFO  r.s.pft.addressbook.tests.TestBase - Start test testAddNewContactwith parameters [ContactData{id=0, name='nk 1', lastname='emp 1'}]
+5707 [Test worker] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testAddNewContact
+5708 [Test worker] INFO  r.s.pft.addressbook.tests.TestBase - Start test testAddNewContactwith parameters [ContactData{id=0, name='nk 2', lastname='emp 2'}]
+6820 [Test worker] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testAddNewContact
+6822 [Test worker] INFO  r.s.pft.addressbook.tests.TestBase - Start test testCurrentDirwith parameters []
+6824 [Test worker] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testCurrentDir

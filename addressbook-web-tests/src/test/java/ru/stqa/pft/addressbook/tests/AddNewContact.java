@@ -41,7 +41,7 @@ public class AddNewContact extends TestBase {
   public void testAddNewContact(ContactData contact) throws Exception {
     app.goTo().homePage();
     Contacts before = app.contact().all();
-    File photo = new File("src/test/resources/stru.png");
+//    File photo = new File("src/test/resources/stru.png");
     app.goTo().goToAddNew();
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size() + 1));

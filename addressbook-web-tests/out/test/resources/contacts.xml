@@ -14,14 +14,4 @@
     <lastname>emp 2</lastname>
     <address>Ленина 2</address>
   </contact>
-  <contact>
-    <name>nk 3</name>
-    <lastname>emp 3</lastname>
-    <address>Ленина 3</address>
-  </contact>
-  <contact>
-    <name>nk 4</name>
-    <lastname>emp 4</lastname>
-    <address>Ленина 4</address>
-  </contact>
 </list>
