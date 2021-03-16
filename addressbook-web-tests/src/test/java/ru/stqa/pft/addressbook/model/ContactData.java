@@ -7,11 +7,11 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import java.io.File;
 
-@Entity
 @XStreamAlias("contact")
+@Entity
 @Table(name = "addressbook")
-public class ContactData {
 
+public class ContactData {
     @XStreamOmitField
     @Id
     @Column(name = "id")
@@ -27,6 +27,7 @@ public class ContactData {
     private String title;
 
     @Column(name = "address")
+    @Type(type = "text")
     private String address;
 
     @Column(name = "company")
@@ -45,12 +46,15 @@ public class ContactData {
     private String work;
 
     @Column(name = "email")
+    @Type(type = "text")
     private String email;
 
     @Column(name = "email2")
+    @Type(type = "text")
     private String email2;
 
     @Column(name = "email3")
+    @Type(type = "text")
     private String email3;
 
     @Transient
@@ -59,18 +63,18 @@ public class ContactData {
     @Transient
     private String allPhones;
 
-    @Column(name = "photo")
-    @Type(type = "text")
+    @Column(name="photo")
+    @Type(type="text")
     private String photo;
 
-
-//    public File getPhoto() {
-//        return new File(photo) ;
-//    }
 
     public ContactData withPhoto(File photo) {
         this.photo = photo.getPath();
         return this;
+    }
+
+    public File getPhoto() {
+        return new File(photo);
     }
 
     public int getId() {
