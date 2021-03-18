@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
@@ -24,7 +25,7 @@ public class ContactHelper extends HelperBase {
         click(By.name("submit"));
     }
 
-    public void fillNewContact(ContactData contactData) {
+    public void fillNewContact(ContactData contactData, boolean creation) {
         typeb(By.name("firstname"), contactData.getName());
         typeb(By.name("lastname"), contactData.getLastname());
         typeb(By.name("title"), contactData.getTitle());
@@ -37,6 +38,14 @@ public class ContactHelper extends HelperBase {
         typeb(By.name("email2"), contactData.getEmail2());
         typeb(By.name("email3"), contactData.getEmail3());
 //        attach(By.name("photo"), contactData.getPhoto());
+
+        if (creation) {
+//            if (contactData.getGroup() != null) {
+//                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+//            }
+        } else {
+            Assert.assertFalse(isElementPresent(By.name("new_group")));
+        }
     }
 
     public void click1(By locator1) {
@@ -94,7 +103,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void create(ContactData contact) {
-        fillNewContact(contact);
+        fillNewContact(contact, true);
         submitContactCreation();
         contactCache = null;
         returnToContactPage();
@@ -109,7 +118,7 @@ public class ContactHelper extends HelperBase {
 
     public void modify(ContactData contact) {
         initContactModificationById(contact.getId());
-        fillNewContact(contact);
+        fillNewContact(contact, true);
         submitContactModification();
         contactCache = null;
         returnToContactPage();

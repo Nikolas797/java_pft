@@ -6,6 +6,8 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 @XStreamAlias("contact")
 @Entity
@@ -23,7 +25,7 @@ public class ContactData {
     @Column(name = "lastname")
     private String lastname;
 
-    @Column(name = "title")
+    @Transient
     private String title;
 
     @Column(name = "address")
@@ -33,28 +35,22 @@ public class ContactData {
     @Column(name = "company")
     private String company;
 
-    @Column(name = "home")
-    @Type(type = "text")
+    @Transient
     private String home;
 
-    @Column(name = "mobile")
-    @Type(type = "text")
+    @Transient
     private String mobile;
 
-    @Column(name = "work")
-    @Type(type = "text")
+    @Transient
     private String work;
 
-    @Column(name = "email")
-    @Type(type = "text")
+    @Transient
     private String email;
 
-    @Column(name = "email2")
-    @Type(type = "text")
+    @Transient
     private String email2;
 
-    @Column(name = "email3")
-    @Type(type = "text")
+    @Transient
     private String email3;
 
     @Transient
@@ -63,9 +59,13 @@ public class ContactData {
     @Transient
     private String allPhones;
 
-    @Column(name="photo")
-    @Type(type="text")
+    @Transient
     private String photo;
+
+
+    @ManyToMany (fetch = FetchType.EAGER)
+    @JoinTable (name ="address_in_groups", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name="group_id"))
+    private Set<GroupData> groups = new HashSet<GroupData>();
 
 
     public ContactData withPhoto(File photo) {
@@ -131,6 +131,10 @@ public class ContactData {
 
     public String getAllPhones() {
         return allPhones;
+    }
+
+    public Groups getGroups() {
+        return new Groups(groups);
     }
 
     public ContactData withId(int id) {
@@ -204,6 +208,21 @@ public class ContactData {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ContactData that = (ContactData) o;
+
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
+
+    @Override
     public String toString() {
         return "ContactData{" +
                 "id=" + id +
@@ -211,23 +230,4 @@ public class ContactData {
                 ", lastname='" + lastname + '\'' +
                 '}';
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ContactData that = (ContactData) o;
-
-        if (id != that.id) return false;
-        return name != null ? name.equals(that.name) : that.name == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
-    }
-
 }
