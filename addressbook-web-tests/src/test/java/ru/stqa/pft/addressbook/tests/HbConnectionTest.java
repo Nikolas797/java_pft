@@ -40,8 +40,13 @@ public class HbConnectionTest {
         session.getTransaction().commit();
         session.close();
         for (ContactData contact : result) {
-            System.out.println(contact);
-            System.out.println(contact.getGroups());
+            if (contact.getGroups().size() != 0) {
+                System.out.println(contact);
+                System.out.println(contact.getGroups());
+                System.out.println(contact.getGroups().size());
+                System.out.println(contact.getGroups().stream().iterator().next().getId());
+                System.out.println(contact.getGroups().stream().iterator().next().getName());
+            }
         }
     }
 }

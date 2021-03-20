@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
@@ -40,9 +41,10 @@ public class ContactHelper extends HelperBase {
 //        attach(By.name("photo"), contactData.getPhoto());
 
         if (creation) {
-//            if (contactData.getGroup() != null) {
-//                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-//            }
+            if (contactData.getGroups().size() > 0) {
+                Assert.assertTrue(contactData.getGroups().size() == 1);
+                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+            }
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
@@ -76,8 +78,8 @@ public class ContactHelper extends HelperBase {
 
 //    public void selectContact(int index) {wd.findElements(By.xpath("(//input[@name='selected[]'])")).get(index).click();}
 
-    private void selectContactById(int id) {
-        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+    public void selectContactById(int id) {
+        wd.findElement(By.cssSelector(String.format("input[id='%s']", id))).click();
     }
 
     private void initContactModificationById(int id) {
@@ -143,10 +145,6 @@ public class ContactHelper extends HelperBase {
         return isElementPresent(By.xpath("(//input[@name='selected[]'])"));
     }
 
-    public int count() {
-        return wd.findElements(By.xpath("(//input[@name='selected[]'])")).size();
-    }
-
     private Contacts contactCache = null;
 
     public Contacts all() {
@@ -184,6 +182,33 @@ public class ContactHelper extends HelperBase {
         return new ContactData().withId(contact.getId()).withName(name).withLastname(lastname).withAddress(address)
                 .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withEmail(email).withEmail2(email2).withEmail3(email3);
     }
+
+    public int count() {
+        return wd.findElements(By.name("entry")).size();
+    }
+
+    public void selectGroup(Contacts contactData) {
+        if (contactData.iterator().next().getGroups().size() > 1) {
+            Assert.assertTrue(contactData.iterator().next().getGroups().size() == 1);
+            new Select(wd.findElement(By.name("group"))).selectByVisibleText(contactData.iterator().next().getGroups().iterator().next().getName());
+        }
+    }
+
+    public void addContactToGroup() {
+        wd.findElement(By.name("add")).click();
+    }
+
+    public void goToGroupPage(Contacts contactData) {
+        if (contactData.iterator().next().getGroups().size() > 0) {
+            Assert.assertTrue(contactData.iterator().next().getGroups().size() == 1);
+            new Select(wd.findElement(By.name("group"))).selectByVisibleText(contactData.iterator().next().getGroups().iterator().next().getName());
+        }
+    }
+
+    public void removeContactFromGroup() {
+        wd.findElement(By.name("remove")).click();
+    }
+
 }
 
 

@@ -5,6 +5,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -39,15 +40,18 @@ public class AddNewContact extends TestBase {
 
   @Test(dataProvider = "validContacts")
   public void testAddNewContact(ContactData contact) throws Exception {
+    Groups groups = app.db().groups();
     app.goTo().homePage();
     Contacts before = app.db().contacts();
-//    File photo = new File("src/test/resources/stru.png");
+    contact.inGroup(groups.iterator().next());
     app.goTo().goToAddNew();
     app.contact().create(contact);
-    assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.db().contacts();
+    assertThat(after.size(), equalTo(before.size() + 1));
+    assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
 //    assertThat(after, equalTo(
 //            before.withAdded(contact.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId()))));
+    //    File photo = new File("src/test/resources/stru.png");
     verifyContactListInUI();
   }
 

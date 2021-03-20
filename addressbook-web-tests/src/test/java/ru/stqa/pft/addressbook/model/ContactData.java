@@ -67,6 +67,9 @@ public class ContactData {
     @JoinTable (name ="address_in_groups", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name="group_id"))
     private Set<GroupData> groups = new HashSet<GroupData>();
 
+    public Set<GroupData> getGroups() {
+        return new Groups(groups);
+    }
 
     public ContactData withPhoto(File photo) {
         this.photo = photo.getPath();
@@ -131,10 +134,6 @@ public class ContactData {
 
     public String getAllPhones() {
         return allPhones;
-    }
-
-    public Groups getGroups() {
-        return new Groups(groups);
     }
 
     public ContactData withId(int id) {
@@ -207,6 +206,7 @@ public class ContactData {
         return this;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -229,5 +229,10 @@ public class ContactData {
                 ", name='" + name + '\'' +
                 ", lastname='" + lastname + '\'' +
                 '}';
+    }
+
+    public ContactData inGroup(GroupData group){
+        groups.add(group);
+        return this;
     }
 }

@@ -37,6 +37,13 @@ public class GroupData {
     @ManyToMany(mappedBy = "groups")
     private Set<ContactData> contacts = new HashSet<ContactData>();
 
+    public Set<ContactData> getContacts(){
+        return new Contacts(contacts);
+    }
+
+//    public Contacts getContacts() {
+//    }
+
     public GroupData withName(String name) {
         this.name = name;
         return this;
@@ -73,9 +80,6 @@ public class GroupData {
         return id;
     }
 
-    public Contacts getContacts() {
-        return new Contacts(contacts);
-    }
 
     @Override
     public String toString() {
