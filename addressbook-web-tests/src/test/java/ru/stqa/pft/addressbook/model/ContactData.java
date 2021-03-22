@@ -7,6 +7,7 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import java.io.File;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @XStreamAlias("contact")
@@ -211,15 +212,13 @@ public class ContactData {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         ContactData that = (ContactData) o;
-
-        return id == that.id;
+        return Objects.equals(name, that.name) && Objects.equals(lastname, that.lastname) && Objects.equals(address, that.address);
     }
 
     @Override
     public int hashCode() {
-        return id;
+        return Objects.hash(name, lastname, address);
     }
 
     @Override
