@@ -30,6 +30,8 @@ public class ApplicationManager {
 
 
         if (browser.equals(BrowserType.CHROME)) {
+            String pathToChrome = Paths.get("/Users/ah/Documents/GitHub/java_pft/mantis-tests").toAbsolutePath().toString();
+            System.setProperty("chromedriver", pathToChrome);
             wd = new ChromeDriver();
         } else if (browser.equals(BrowserType.FIREFOX)) {
             String pathToGeckoDriver = Paths.get("/Users/ah/Documents/GitHub/java_pft/geckodriver").toAbsolutePath().toString();
