@@ -1,32 +1,39 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertTrue;
 
 public class DeleteContactFromGroup extends TestBase {
 
-    @BeforeClass
-    public void ensurePreconditions() {
-        Contacts contacts = app.db().contacts();
-        if(contacts.stream().iterator().next().getGroups().size() == 0) {
-            app.contact().selectContactById(contacts.iterator().next().getId());
-            app.contact().selectGroup(contacts);
-            app.contact().addContactToGroup();
+    @BeforeMethod
+    public void ensurePreconditionsSorted() {
+        app.goTo().homePage();
+        if (app.db().contacts().size() == 0) {
+            app.contact().create(new ContactData().withName("nk").withLastname("emp"), true);
+            app.goTo().homePage();
+        }
+
+        if (app.db().groups().size() == 0) {
+            app.goTo().groupPage();
+            app.group().create(new GroupData().withName("test0"));
             app.goTo().homePage();
         }
     }
 
     @Test
-    public void contactDeletionFromGroupTest() {
-        Contacts contacts = app.db().contacts();
-        app.contact().goToGroupPage(contacts);
-        app.contact().selectContactById(contacts.iterator().next().getId());
-        app.contact().removeContactFromGroup();
-        Contacts contactsafter = app.db().contacts();
-        assertThat(contacts.iterator().next(), equalTo(contactsafter.iterator().next()));
+    public void testDeleteContactFromTheGroup() {
+        app.goTo().homePage();
+        ContactData contactData = app.db().contactInGroup();
+        GroupData groupData = contactData.getGroups().iterator().next();
+        app.contact().getGroupData(groupData);
+        app.contact().selectContactNotInGroup(contactData);
+        app.contact().pushButtonRemoveFromGroup();
+        app.goTo().homePage();
+        ContactData contactData1 = app.db().contactById(contactData.getId());
+        assertTrue(contactData1.getGroups().contains(groupData));
     }
 }

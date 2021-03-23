@@ -5,7 +5,6 @@ import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.io.File;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -60,8 +59,10 @@ public class ContactData {
     @Transient
     private String allPhones;
 
-    @Transient
-    private String photo;
+//    @Expose
+//    @Column(name = "photo")
+//    @Type(type = "text")
+//    private String Photo;
 
 
     @ManyToMany (fetch = FetchType.EAGER)
@@ -72,14 +73,14 @@ public class ContactData {
         return new Groups(groups);
     }
 
-    public ContactData withPhoto(File photo) {
-        this.photo = photo.getPath();
-        return this;
-    }
+//    public ContactData withPhoto(File photo) {
+//        this.Photo = photo.getPath();
+//        return this;
+//    }
 
-    public File getPhoto() {
-        return new File(photo);
-    }
+//    public File getPhoto() {
+//        return new File(Photo);
+//    }
 
     public int getId() {
         return id;
@@ -213,25 +214,21 @@ public class ContactData {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ContactData that = (ContactData) o;
-        return Objects.equals(name, that.name) && Objects.equals(lastname, that.lastname) && Objects.equals(address, that.address);
+        return id == that.id && Objects.equals(name, that.name) && Objects.equals(lastname, that.lastname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, lastname, address);
+        return Objects.hash(id, name, lastname);
     }
 
     @Override
     public String toString() {
         return "ContactData{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "id='" + id + '\'' +
+                ", firstname='" + name + '\'' +
                 ", lastname='" + lastname + '\'' +
                 '}';
     }
 
-    public ContactData inGroup(GroupData group){
-        groups.add(group);
-        return this;
-    }
 }

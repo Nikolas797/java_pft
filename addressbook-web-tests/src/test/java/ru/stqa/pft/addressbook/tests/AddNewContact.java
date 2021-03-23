@@ -5,7 +5,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -37,26 +36,22 @@ public class AddNewContact extends TestBase {
     }
   }
 
-
   @Test(dataProvider = "validContacts")
-  public void testAddNewContact(ContactData contact) throws Exception {
-    Groups groups = app.db().groups();
+  public void testAddNewContact(ContactData contact) {
     app.goTo().homePage();
     Contacts before = app.db().contacts();
-    contact.inGroup(groups.iterator().next());
-    app.goTo().goToAddNew();
-    app.contact().create(contact);
+    app.contact().initContactCreation();
+    app.contact().create(contact, true);
+    app.goTo().homePage();
     Contacts after = app.db().contacts();
     assertThat(after.size(), equalTo(before.size() + 1));
-    assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
-//    assertThat(after, equalTo(
-//            before.withAdded(contact.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId()))));
-    //    File photo = new File("src/test/resources/stru.png");
+    assertThat(after, equalTo(before.withAdded(contact.
+            withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
+//    File photo = new File("src/test/resources/stru.png");
     verifyContactListInUI();
   }
 
-
-  @Test
+  @Test(enabled = false)
   public void testCurrentDir() throws Exception {
     File currentDir = new File(".");
     System.out.println(currentDir.getAbsolutePath());
