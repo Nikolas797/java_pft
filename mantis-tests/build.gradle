@@ -4,6 +4,13 @@ repositories{
     mavenCentral()
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+tasks.withType(Test) {
+    systemProperty "file.encoding", "UTF-8"
+}
+
 dependencies{
     implementation("org.testng:testng:7.0.0")
     implementation('org.seleniumhq.selenium:selenium-java:3.141.59')
@@ -21,8 +28,5 @@ test {
     }
     if(project.hasProperty('target')){
         systemProperty 'target', "${target}"
-    }
-    if (project.hasProperty('verifyUI')){
-        systemProperty 'verifyUI', "${verifyUI}"
     }
 }

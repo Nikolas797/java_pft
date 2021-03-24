@@ -26,12 +26,10 @@ public class ApplicationManager {
 
     public void init() throws IOException {
         String target = System.getProperty("target", "local");
-        properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties",target))));
+        properties.load(new FileReader(new File(String.format("/Users/ah/Documents/GitHub/java_pft/mantis-tests/src/test/resources/%s.properties",target))));
 
 
         if (browser.equals(BrowserType.CHROME)) {
-            String pathToChrome = Paths.get("/Users/ah/Documents/GitHub/java_pft/mantis-tests").toAbsolutePath().toString();
-            System.setProperty("chromedriver", pathToChrome);
             wd = new ChromeDriver();
         } else if (browser.equals(BrowserType.FIREFOX)) {
             String pathToGeckoDriver = Paths.get("/Users/ah/Documents/GitHub/java_pft/geckodriver").toAbsolutePath().toString();
@@ -40,8 +38,9 @@ public class ApplicationManager {
         } else if (browser.equals(BrowserType.SAFARI)) {
             wd = new SafariDriver();
         }
-        wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         wd.get(properties.getProperty("web.baseUrl"));
+        properties.getProperty("web.adminPassword");
     }
 
     public void stop() {
