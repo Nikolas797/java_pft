@@ -14,10 +14,11 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
-    private final Properties properties;
-    WebDriver wd;
 
+    private final Properties properties;
+    private WebDriver wd;
     private String browser;
+    private RegistrationHelper registrationHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -27,24 +28,12 @@ public class ApplicationManager {
     public void init() throws IOException {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("/Users/ah/Documents/GitHub/java_pft/mantis-tests/src/test/resources/%s.properties",target))));
-
-
-        if (browser.equals(BrowserType.CHROME)) {
-            wd = new ChromeDriver();
-        } else if (browser.equals(BrowserType.FIREFOX)) {
-            String pathToGeckoDriver = Paths.get("/Users/ah/Documents/GitHub/java_pft/geckodriver").toAbsolutePath().toString();
-            System.setProperty("webdriver.gecko.driver", pathToGeckoDriver);
-            wd = new FirefoxDriver();
-        } else if (browser.equals(BrowserType.SAFARI)) {
-            wd = new SafariDriver();
-        }
-        wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        wd.get(properties.getProperty("web.baseUrl"));
-        properties.getProperty("web.adminPassword");
     }
 
     public void stop() {
-        wd.quit();
+        if(wd != null) {
+            wd.quit();
+        }
     }
 
     public HttpSession newSession(){
@@ -55,4 +44,29 @@ public class ApplicationManager {
        return properties.getProperty(key);
     }
 
+    public RegistrationHelper registrarion() {
+        if (registrationHelper == null){
+            registrationHelper = new RegistrationHelper(this);
+        }
+        return registrationHelper;
+    }
+
+    public WebDriver getDriver(){
+        if (wd == null){
+            if (browser.equals(BrowserType.CHROME)) {
+                wd = new ChromeDriver();
+            } else if (browser.equals(BrowserType.FIREFOX)) {
+                String pathToGeckoDriver = Paths.get("/Users/ah/Documents/GitHub/java_pft/geckodriver").toAbsolutePath().toString();
+                System.setProperty("webdriver.gecko.driver", pathToGeckoDriver);
+                wd = new FirefoxDriver();
+            } else if (browser.equals(BrowserType.SAFARI)) {
+                wd = new SafariDriver();
+            }
+
+            wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+            wd.get(properties.getProperty("web.baseUrl"));
+            properties.getProperty("web.adminPassword");
+        }
+        return wd;
+    }
 }
