@@ -2,7 +2,6 @@ package ru.stqa.pft.mantis.appmanager;
 
 import org.apache.commons.net.telnet.TelnetClient;
 import ru.stqa.pft.mantis.model.MailMessage;
-
 import javax.mail.*;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,14 +10,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 public class JamesHelper {
 
     private ApplicationManager app;
-
     private TelnetClient telnet;
     private InputStream in;
     private PrintStream out;
-
     private Session mailSession;
     private Store store;
     private String mailserver;
@@ -37,9 +35,9 @@ public class JamesHelper {
         return result.trim().equals("User " + name + " exist");
     }
 
-    public void createUser(String name, String password) {
+    public void createUser(String name, String passwd) {
         initTelnetSession();
-        write("adduser " + name + " " + password);
+        write("adduser " + name + " " + passwd);
         String result = readUntil("User " + name + " added");
         closeTelnetSession();
     }
@@ -60,22 +58,27 @@ public class JamesHelper {
         try {
             telnet.connect(mailserver, port);
             in = telnet.getInputStream();
-            out = new PrintStream(telnet.getOutputStream());
+            out = new PrintStream( telnet.getOutputStream() );
+
         } catch (Exception e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
+        // Don't know why it doesn't allow login at the first attempt
         readUntil("Login id:");
         write("");
         readUntil("Password:");
         write("");
 
+        // Second login attempt, must be successful
         readUntil("Login id:");
         write(login);
         readUntil("Password:");
         write(password);
 
-        readUntil("Welcome "+ login + ". HELP for a list commands");
+        // Read welcome message
+        readUntil("Welcome "+login+". HELP for a list of commands");
     }
 
     private String readUntil(String pattern) {
@@ -84,7 +87,7 @@ public class JamesHelper {
             StringBuffer sb = new StringBuffer();
             char ch = (char) in.read();
             while (true) {
-                System.out.println(ch);
+                System.out.print(ch);
                 sb.append(ch);
                 if (ch == lastChar) {
                     if (sb.toString().endsWith(pattern)) {
@@ -121,7 +124,7 @@ public class JamesHelper {
         closeFolder(inbox);
     }
 
-    public void closeFolder(Folder folder) throws MessagingException {
+    private void closeFolder(Folder folder) throws MessagingException {
         folder.close(true);
         store.close();
     }
@@ -159,7 +162,6 @@ public class JamesHelper {
 
     public static MailMessage toModelMail(Message m) {
         try {
-
             return new MailMessage(m.getAllRecipients()[0].toString(), (String) m.getContent());
         } catch (MessagingException e) {
             e.printStackTrace();
