@@ -76,7 +76,7 @@ public class JamesHelper {
         readUntil("Password:");
         write(password);
 
-        readUntil("Welcome "+login+". HELP for a list of commands");
+        readUntil("Welcome " + login + ". HELP for a list of commands");
     }
 
     private String readUntil(String pattern) {
@@ -143,7 +143,7 @@ public class JamesHelper {
                 return allMail;
             }
             try {
-                Thread.sleep(1000);
+                Thread.sleep(15000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

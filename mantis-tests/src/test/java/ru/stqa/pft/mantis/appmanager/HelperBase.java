@@ -3,7 +3,6 @@ package ru.stqa.pft.mantis.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
-import java.io.File;
 import java.util.NoSuchElementException;
 
 
@@ -32,11 +31,6 @@ public class HelperBase {
         }
     }
 
-    protected void attach(By locator, File file) {
-        if (file != null) {
-            wd.findElement(locator).sendKeys(file.getAbsolutePath());
-        }
-    }
 
     private boolean isAlertPresent() {
         try {
@@ -55,10 +49,6 @@ public class HelperBase {
         } catch (NoSuchElementException ex) {
             return false;
         }
-    }
-
-    public int count() {
-        return wd.findElements(By.name("selected[]")).size();
     }
 }
 
