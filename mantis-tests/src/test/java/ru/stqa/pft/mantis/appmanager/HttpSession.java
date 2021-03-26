@@ -47,6 +47,7 @@ public class HttpSession {
         }
     }
 
+
     public boolean isLoggedInAs(String username) throws IOException {
         HttpGet get = new HttpGet(app.getProperty("web.baseUrl") + "/index.php");
         CloseableHttpResponse response = httpClient.execute(get);

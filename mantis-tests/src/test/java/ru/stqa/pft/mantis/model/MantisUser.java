@@ -32,4 +32,5 @@ public class MantisUser {
     public String getEmail() {
         return email;
     }
+
 }

@@ -46,4 +46,5 @@ public class ChangePasswordTest extends TestBase {
         VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore(). build();
         return regex.getText(mailMessage.text);
     }
+
 }

@@ -50,4 +50,5 @@ public class RegistrationHelper extends HelperBase{
     public void clickChangePassword(){
         click(By.xpath("//form[@id = 'manage-user-reset-form']//input[@type='submit']"));
     }
+
 }

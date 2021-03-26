@@ -21,6 +21,7 @@ public class JamesHelper {
     private Store store;
     private String mailserver;
 
+
     public JamesHelper(ApplicationManager app) {
         this.app = app;
         telnet = new TelnetClient();
@@ -65,19 +66,16 @@ public class JamesHelper {
             e.printStackTrace();
         }
 
-        // Don't know why it doesn't allow login at the first attempt
         readUntil("Login id:");
         write("");
         readUntil("Password:");
         write("");
 
-        // Second login attempt, must be successful
         readUntil("Login id:");
         write(login);
         readUntil("Password:");
         write(password);
 
-        // Read welcome message
         readUntil("Welcome "+login+". HELP for a list of commands");
     }
 
