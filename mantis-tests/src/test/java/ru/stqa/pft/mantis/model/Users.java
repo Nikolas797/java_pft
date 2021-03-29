@@ -10,11 +10,10 @@ import java.util.Objects;
 @Entity
 @Table(name = "mantis_user_table")
 
-public class MantisUser {
-
+public class Users {
     @Id
     @Column(name = "id")
-    private int id = 0;
+    private int id = Integer.MAX_VALUE;
 
     @Column(name = "username")
     private String username;
@@ -25,13 +24,12 @@ public class MantisUser {
     @Column(name = "password")
     private String password;
 
-
     public int getId() {
         return id;
     }
 
     public String getUsername() {
-        return 	username;
+        return username;
     }
 
     public String getEmail() {
@@ -44,31 +42,24 @@ public class MantisUser {
 
     @Override
     public String toString() {
-        return "UserData{" +
+        return "Users{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        MantisUser userMantis = (MantisUser) o;
-
-        if (id != userMantis.id) return false;
-        if (!Objects.equals(username, userMantis.username)) return false;
-        return Objects.equals(email, userMantis.email);
+        if (!(o instanceof Users)) return false;
+        Users users = (Users) o;
+        return getId() == users.getId() && Objects.equals(getUsername(), users.getUsername()) && Objects.equals(getEmail(), users.getEmail());
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (username != null ? username.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        return result;
+        return Objects.hash(getId(), getUsername(), getEmail());
     }
 }

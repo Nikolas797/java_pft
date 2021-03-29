@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 
 
 public class JamesHelper {
-
     private ApplicationManager app;
     private TelnetClient telnet;
     private InputStream in;
@@ -20,7 +19,6 @@ public class JamesHelper {
     private Session mailSession;
     private Store store;
     private String mailserver;
-
 
     public JamesHelper(ApplicationManager app) {
         this.app = app;
@@ -58,24 +56,21 @@ public class JamesHelper {
 
         try {
             telnet.connect(mailserver, port);
-            in = telnet.getInputStream();
-            out = new PrintStream( telnet.getOutputStream() );
+            in   = telnet.getInputStream();
+            out = new PrintStream( telnet.getOutputStream());
 
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
         readUntil("Login id:");
         write("");
         readUntil("Password:");
         write("");
-
         readUntil("Login id:");
         write(login);
         readUntil("Password:");
         write(password);
-
         readUntil("Welcome " + login + ". HELP for a list of commands");
     }
 
@@ -143,7 +138,7 @@ public class JamesHelper {
                 return allMail;
             }
             try {
-                Thread.sleep(15000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

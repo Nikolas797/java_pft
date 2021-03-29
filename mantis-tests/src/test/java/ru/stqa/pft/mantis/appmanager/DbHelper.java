@@ -5,27 +5,24 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import ru.stqa.pft.mantis.model.MantisUser;
-
+import ru.stqa.pft.mantis.model.Users;
 
 public class DbHelper {
 
     private final SessionFactory sessionFactory;
 
-    public DbHelper(){
-
+    public DbHelper() {
         // A SessionFactory is set up once for an application!
-
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
-        sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
+        sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
     }
 
-    public MantisUser mantisUser(){
+    public Users mantisUser() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        MantisUser result =(MantisUser) session.createQuery("from MantisUser where email like '%@localhost' and username <> 'administrator' ").list().get(0);
+        Users result = (Users) session.createQuery("from Users where username = 'nk' ").list();
         session.getTransaction().commit();
         session.close();
         return result;
