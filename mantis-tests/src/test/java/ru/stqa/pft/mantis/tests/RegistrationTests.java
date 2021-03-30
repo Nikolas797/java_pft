@@ -9,6 +9,7 @@ import static org.testng.Assert.assertTrue;
 
 public class RegistrationTests extends TestBase {
 
+
     //@BeforeMethod
     public void startMailServer(){
         app.mail().start();

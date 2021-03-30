@@ -20,6 +20,7 @@ public class JamesHelper {
     private Store store;
     private String mailserver;
 
+
     public JamesHelper(ApplicationManager app) {
         this.app = app;
         telnet = new TelnetClient();

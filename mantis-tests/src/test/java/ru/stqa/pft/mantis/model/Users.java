@@ -10,6 +10,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "mantis_user_table")
 
+
 public class Users {
     @Id
     @Column(name = "id")

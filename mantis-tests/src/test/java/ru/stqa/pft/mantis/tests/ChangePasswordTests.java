@@ -14,6 +14,7 @@ import static org.testng.AssertJUnit.assertTrue;
 
 public class ChangePasswordTests extends TestBase {
 
+
     @BeforeSuite(alwaysRun = true)
     public void setUp() throws IOException {
         app.init();
