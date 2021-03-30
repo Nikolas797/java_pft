@@ -12,6 +12,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static java.math.BigInteger.valueOf;
+
 public class SoapHelper {
 
     private ApplicationManager app;
@@ -36,11 +38,11 @@ public class SoapHelper {
 
     public Issue addIssue(Issue issue) throws MalformedURLException, ServiceException, RemoteException {
         MantisConnectPortType mc = getMantisConnect();
-        String[] categories = mc.mc_project_get_categories("administrator", "root", BigInteger.valueOf(issue.getProject().getId()));
+        String[] categories = mc.mc_project_get_categories("administrator", "root", valueOf(issue.getProject().getId()));
         IssueData issueData = new IssueData();
         issueData.setSummary(issue.getSummary());
         issueData.setDescription(issue.getDescription());
-        issueData.setProject(new ObjectRef(BigInteger.valueOf(issue.getProject().getId()),issue.getProject().getName()));
+        issueData.setProject(new ObjectRef(valueOf(issue.getProject().getId()), issue.getProject().getName()));
         issueData.setCategory(categories[0]);
         BigInteger issueId = mc.mc_issue_add("administrator", "root", issueData);
         IssueData createdIssueData = mc.mc_issue_get("administrator", "root", issueId);
@@ -48,5 +50,15 @@ public class SoapHelper {
                 .withSummary(createdIssueData.getSummary())
                 .withDescription(createdIssueData.getDescription())
                 .withProject(new Project().withId(createdIssueData.getProject().getId().intValue()).withName(createdIssueData.getProject().getName()));
+    }
+
+    public Issue getIssueById(int issueId) throws MalformedURLException, ServiceException, RemoteException {
+        MantisConnectPortType mantisConnectPort = getMantisConnect();
+        IssueData issue = mantisConnectPort.mc_issue_get("administrator", "root", BigInteger.valueOf(issueId));
+        return new Issue().withId(issue.getId().intValue()).withSummary(issue.getSummary()).
+                withDescription(issue.getDescription()).withStatus(issue.getStatus().getName()).
+                withResolution(issue.getResolution().getName()).withProject(new Project().
+                withId(issue.getProject().getId().intValue()).
+                withName(issue.getProject().getName()));
     }
 }

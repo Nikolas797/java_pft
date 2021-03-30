@@ -202,3 +202,4 @@ addressbook-web-tests/test-20210313T160330
 addressbook-web-tests/build/tmp/test/jar_extract_1004112016367052478_tmp
 *.xml
 addressbook-web-tests/build/tmp/test/jar_extract_3698348610567050951_tmp
+soap-sample/build/wsdl2java/298daa16c0c18f51eaae4fc4d7695f67/com/lavasoft/GetCountryNameByISO2Response.java
