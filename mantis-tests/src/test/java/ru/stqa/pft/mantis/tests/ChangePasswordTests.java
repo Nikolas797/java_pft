@@ -2,6 +2,7 @@ package ru.stqa.pft.mantis.tests;
 
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.pft.mantis.appmanager.HttpSession;
 import ru.stqa.pft.mantis.model.MailMessage;
 import ru.stqa.pft.mantis.model.Users;
@@ -20,33 +21,42 @@ public class ChangePasswordTests extends TestBase {
         app.init();
     }
 
-//    @BeforeMethod
-    public void startMailServer(){
+    //    @BeforeMethod
+    public void startMailServer() {
         app.mail().start();
     }
 
     @Test
     public void testChangeUserPassword() throws Exception {
-        String user = "nk";
-        String email = "nk@localhost";
-        String password = "password";
-        String passwordNew = "password1";
+//        String user = "nk";
+//        String email = "nk@localhost";
+//        String password = "password";
+//        String passwordNew = "password1";
         app.session().login("Administrator", "root");
         app.session().usersList();
         Users mantisUser = app.db().mantisUser();
         Thread.sleep(2000);
         app.session().selectUser(String.valueOf(mantisUser.getId()));
         app.session().changePassword();
-        List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
-        String confirmationLink = app.session().findConfirmationLink(mailMessages, email);
-        app.session().updateUserPassword(confirmationLink, user, passwordNew);
+        String userName = mantisUser.getUsername();
+        boolean userExist = app.james().doesUserExist(userName);
+        if (!userExist) {
+            app.james().createUser(userName, "password");
+        } else {
+            app.james().drainEmail(userName, "password");
+        }
+
+        List<MailMessage> mailMessages = app.james().waitForMail(userName, "password", 60000);
+        String confirmationLink = findConfirmationLink(mailMessages, userName + "@localhost");
+        app.registration().changePassword(confirmationLink, "password1");
+        app.session().updateUserPassword(confirmationLink, userName, "password1");
         HttpSession httpSession = app.newSession();
-        assertTrue(httpSession.login(user, passwordNew));
-        assertTrue(httpSession.isLoggedInAs("nk"));
+        assertTrue(httpSession.login(userName, "password1"));
     }
 
-//    @AfterMethod(alwaysRun = true)
-    public void stopMailServer(){
-        app.mail().stop();
+    private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
+        MailMessage mailMessage = mailMessages.stream().filter((m) -> m.to.equals(email)).findFirst().get();
+        VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
+        return regex.getText(mailMessage.text);
     }
 }

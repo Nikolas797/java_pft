@@ -22,7 +22,7 @@ public class DbHelper {
     public Users mantisUser() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        Users result = (Users) session.createQuery("from Users where username = 'nk' ").list();
+        Users result = (Users) session.createQuery("from Users where email like '%@localhost' and access_level <> 'reporter'").list().get(2);
         session.getTransaction().commit();
         session.close();
         return result;
