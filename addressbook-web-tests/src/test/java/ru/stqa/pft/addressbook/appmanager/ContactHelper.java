@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
@@ -184,6 +185,10 @@ public class ContactHelper extends HelperBase {
         wd.findElement(By.xpath(String.format("//input[@type='checkbox']", contact.getId()))).click();
     }
 
+    public void groupName(GroupData group) {
+        click(By.xpath(String.format("//select[@name='group']/option[text() = '%s']", group.getName())));
+    }
+
     public void selectGroup(GroupData group) {
         wd.findElement(By.xpath(String.format("//select[@name='to_group']/option[@value='%s']", group.getId()))).click();
     }
@@ -201,6 +206,28 @@ public class ContactHelper extends HelperBase {
         wd.findElement(By.xpath("//input[@name='remove']")).click();
     }
 
+    public void selectContactWithoutGroup(ContactData contact) {
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText("[none]");
+        click(By.xpath(String.format("//input[@type='checkbox']", contact.getId())));
+    }
+
+    public void selectContact(ContactData contact) {
+        click(By.xpath(String.format("//input[@type='checkbox']", contact.getId())));
+    }
+
+    public void gotoHomePage() {
+        if (isElementPresent(By.id("maintable"))) {
+            return;
+        }
+        click(By.linkText("home"));
+    }
+
+    public void removeContactFromGroup() {
+        wd.findElement(By.name("selected[]")).click();
+        click(By.name("remove"));
+        contactCache = null;
+        gotoHomePage();
+    }
 }
 
 

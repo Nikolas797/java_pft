@@ -23,18 +23,33 @@ public class AddContactToGroup extends TestBase{
             app.group().create(new GroupData().withName("test 0"));
             app.goTo().homePage();
         }
+
+        if (app.db().contactWithoutGroups().size() == 0) {
+            app.goTo().homePage();
+            app.contact().create(new ContactData().withName("nk").withLastname("emp"), true);
+        }
+        if (app.db().contactWithGroups().size() == 0) {
+            ContactData before = app.db().contactWithoutGroup();
+            Groups groups = app.db().groups();
+            GroupData group = groups.iterator().next();
+            app.goTo().homePage();
+            app.contact().selectContactWithoutGroup(before);
+            app.contact().selectGroup(group);
+            app.contact().pushButtonAddToGroup();
+        }
     }
 
     @Test
     public void testAddContactToGroup() {
-        app.goTo().homePage();
-        ContactData contactData = app.db().contactNotInGroup();
-        app.contact().selectContactNotInGroup(contactData);
+        ContactData before = app.db().contactWithoutGroup();
         Groups groups = app.db().groups();
         GroupData group = groups.iterator().next();
+        app.goTo().homePage();
+        app.contact().selectContactWithoutGroup(before);
         app.contact().selectGroup(group);
         app.contact().pushButtonAddToGroup();
-        ContactData contactData1 = app.db().contactById(contactData.getId());
-        assertTrue(contactData1.getGroups().contains(group));
+        ContactData after = app.db().contactById(before.getId());
+        assertTrue(after.getGroups().contains(group));
+        verifyContactListInUI();
     }
 }
