@@ -53,7 +53,7 @@ public class ApplicationManager {
         } else {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setBrowserName(browser);
-            capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "macOS")));
+            capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "Mac OS X")));
             wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
         }
 
