@@ -45,6 +45,4 @@ public class RestAssuredTests {
         JsonElement parsed = new JsonParser().parse(json);
         return parsed.getAsJsonObject().get("issue_id").getAsInt();
     }
-
-
 }

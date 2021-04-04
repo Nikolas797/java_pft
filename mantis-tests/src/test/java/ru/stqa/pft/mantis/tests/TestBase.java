@@ -1,16 +1,21 @@
 package ru.stqa.pft.mantis.tests;
 
+import com.google.common.reflect.TypeToken;
+import com.jayway.restassured.RestAssured;
+import com.solidfire.gson.Gson;
+import com.solidfire.gson.JsonElement;
+import com.solidfire.gson.JsonParser;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.SkipException;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import ru.stqa.pft.mantis.appmanager.ApplicationManager;
 import ru.stqa.pft.mantis.model.Issue;
-
 import javax.xml.rpc.ServiceException;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
+import java.util.Set;
 
 public class TestBase {
 
@@ -20,23 +25,27 @@ public class TestBase {
     @BeforeSuite(alwaysRun = true)
     public void setUp() throws Exception {
         app.init();
-        app.ftp().upload(new File("/Users/ah/Documents/GitHub/java_pft/mantis-tests/src/test/resources/config_inc.php"), "config_inc.php", "config_inc.bak");
+        app.ftp().upload(new File("/Users/ah/Documents/GitHub/java_pft/mantis-tests/src/test/resources/config_inc.php"),
+                "config_inc.php", "config_inc.bak");
+        RestAssured.authentication = RestAssured.basic("288f44776e7bec4bf44fdfeb1e646490", "");
     }
 
     @AfterSuite(alwaysRun = true)
     public void tearDown() throws Exception {
-        app.ftp().restore("config_inc.bak", "config_inc.php");
+        app.ftp().restore("config_inc.php.bak","config_inc.php");
         app.stop();
     }
 
-    boolean isIssueOpen(int issueId) throws RemoteException, ServiceException, MalformedURLException {
-        Issue issue = app.soap().getIssueById(issueId);
-        if ((issue.getStatus().equals("resolved")) || (issue.getStatus().equals("closed")) ||
-                (issue.getResolution().equals("fixed"))) {
-            return true;
-        } else {
-            return false;
-        }
+    public ApplicationManager getApp() {
+        return app;
+    }
+
+    public boolean isIssueOpen(int issueId) throws RemoteException, ServiceException, MalformedURLException {
+        String json = RestAssured.get(String.format("http://bugify.stqa.ru/api/issues/%s.json", issueId)).asString();
+        JsonElement parsed = new JsonParser().parse(json);
+        JsonElement issues = parsed.getAsJsonObject().get("issues");
+        Set<Issue> issue = new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {}.getType());
+        return !issue.iterator().next().getState().equals("3");
     }
 
     public void skipIfNotFixed(int issueId) throws RemoteException, ServiceException, MalformedURLException {

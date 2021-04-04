@@ -23,6 +23,9 @@ dependencies {
     implementation 'org.hibernate:hibernate-core:5.4.22.Final'
     implementation 'mysql:mysql-connector-java:8.0.23'
     implementation 'biz.futureware.mantis:mantis-axis-soap-client:1.2.19'
+    implementation 'com.solidfire.code.gson:gson:2.6.2'
+    implementation 'org.apache.httpcomponents:fluent-hc:4.5.1'
+    implementation 'com.jayway.restassured:rest-assured:2.9.0'
 }
 
 test {
