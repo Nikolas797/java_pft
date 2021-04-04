@@ -10,7 +10,7 @@ public class PointTests {
     public void test1(){
         Point p1 = new Point(-1,4);
         Point p2 = new Point(-2,-3);
-        Assert.assertEquals(Math.round(p1.distance(p2)), 8);
+        Assert.assertEquals(Math.round(p1.distance(p2)), 7);
     }
 
     @Test
