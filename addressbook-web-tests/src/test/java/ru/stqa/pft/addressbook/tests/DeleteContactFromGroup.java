@@ -5,28 +5,26 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
+
 import static org.testng.Assert.assertTrue;
 
 
 public class DeleteContactFromGroup extends TestBase {
 
     @BeforeMethod
-    public void ensurePreconditionsSorted() {
-        app.goTo().homePage();
+    public void ensurePreconditionsSorted() throws InterruptedException {
         if (app.db().contacts().size() == 0) {
-            app.contact().create(new ContactData().withName("nk").withLastname("emp"), true);
+            app.contact().initContactCreation();
+            app.contact().create(new ContactData().withName("nk").withLastname("emp").withCompany("AH"), true);
             app.goTo().homePage();
         }
+
         if (app.db().groups().size() == 0) {
             app.goTo().groupPage();
             app.group().create(new GroupData().withName("test 0"));
             app.goTo().homePage();
         }
 
-        if (app.db().contactWithoutGroups().size() == 0) {
-            app.goTo().homePage();
-            app.contact().create(new ContactData().withName("nk").withLastname("emp"), true);
-        }
         if (app.db().contactWithGroups().size() == 0) {
             ContactData before = app.db().contactWithoutGroup();
             Groups groups = app.db().groups();

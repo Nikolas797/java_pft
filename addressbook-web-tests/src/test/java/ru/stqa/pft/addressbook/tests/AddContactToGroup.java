@@ -15,27 +15,15 @@ public class AddContactToGroup extends TestBase{
     public void ensurePreconditions() {
         app.goTo().homePage();
         if (app.db().contacts().size() == 0) {
+            app.contact().initContactCreation();
             app.contact().create(new ContactData().withName("nk").withLastname("emp"), true);
             app.goTo().homePage();
         }
+
         if (app.db().groups().size() == 0) {
             app.goTo().groupPage();
             app.group().create(new GroupData().withName("test 0"));
             app.goTo().homePage();
-        }
-
-        if (app.db().contactWithoutGroups().size() == 0) {
-            app.goTo().homePage();
-            app.contact().create(new ContactData().withName("nk").withLastname("emp"), true);
-        }
-        if (app.db().contactWithGroups().size() == 0) {
-            ContactData before = app.db().contactWithoutGroup();
-            Groups groups = app.db().groups();
-            GroupData group = groups.iterator().next();
-            app.goTo().homePage();
-            app.contact().selectContactWithoutGroup(before);
-            app.contact().selectGroup(group);
-            app.contact().pushButtonAddToGroup();
         }
     }
 
