@@ -12,10 +12,10 @@ import static org.testng.Assert.assertTrue;
 public class DeleteContactFromGroup extends TestBase {
 
     @BeforeMethod
-    public void ensurePreconditionsSorted() throws InterruptedException {
+    public void ensurePreconditionsSorted() {
         if (app.db().contacts().size() == 0) {
             app.contact().initContactCreation();
-            app.contact().create(new ContactData().withName("nk").withLastname("emp").withCompany("AH"), true);
+            app.contact().create(new ContactData().withName("nk").withLastname("emp"), true);
             app.goTo().homePage();
         }
 

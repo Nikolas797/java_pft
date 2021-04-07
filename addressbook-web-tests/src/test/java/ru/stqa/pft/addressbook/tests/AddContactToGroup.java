@@ -20,6 +20,12 @@ public class AddContactToGroup extends TestBase{
             app.goTo().homePage();
         }
 
+        if (app.db().contactWithoutGroups().size() == 0) {
+            app.goTo().homePage();
+            app.contact().initContactCreation();
+            app.contact().create(new ContactData().withName("nk").withLastname("emp"), true);
+        }
+
         if (app.db().groups().size() == 0) {
             app.goTo().groupPage();
             app.group().create(new GroupData().withName("test 0"));
